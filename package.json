@@ -1,4 +1,5 @@
 {
+  "homepage": "https://marm02.github.io/filmapp_frontend/",
   "name": "filmapp_frontened",
   "version": "0.1.0",
   "private": true,
@@ -15,6 +16,7 @@
     "bootstrap-fileinput": "^5.0.2",
     "config": "^3.0.1",
     "es6-promise": "^4.2.6",
+    "gh-pages": "^2.0.1",
     "history": "latest",
     "jquery": "^3.3.1",
     "lodash": "^4.17.11",
@@ -40,6 +42,8 @@
     "video-react": "^0.13.6"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
