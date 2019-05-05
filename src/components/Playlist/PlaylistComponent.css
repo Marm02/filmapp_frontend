@@ -1,0 +1,70 @@
+.playlist-header {
+    background-color: rgba(233, 236, 239, 0.80);
+
+}
+
+.playlist-container {
+    background-color: rgba(243, 246, 249, 0.88);
+
+}
+
+.playlist-index {
+    color: hsla(0, 0%, 6.7%, .6);
+}
+
+
+
+
+@media (hover: hover) {
+
+    #playlist_remove {
+        opacity: 0;
+        transition: all .2s ease-in-out;
+        color: #606060;
+    }
+
+    #playlist_remove_film {
+        opacity: 0;
+        transition: all .2s ease-in-out;
+        color: #606060;
+    }
+
+    #playlist_remove_film:hover {
+        opacity: 1;
+    }
+
+    #playlist_container:hover + #playlist_remove_film {
+        opacity: 1;
+    }
+
+    #playlist_remove_film_icon:hover {
+        cursor: pointer;
+    }
+
+    #playlist_remove:hover {
+        opacity: 1;
+        cursor: pointer;
+    }
+
+    #playlist_remove_header:hover + #playlist_remove {
+        opacity: 0.6;
+    }
+
+    #playlist_remove_header:hover + #playlist_remove:hover + #playlist_remove_film_icon {
+        opacity: 1;
+    }
+}
+
+@media (hover: none) {
+    #playlist_remove {
+        opacity: 0.8;
+        color: #606060;
+    }
+
+    #playlist_remove_film {
+        opacity: 0.8;
+        color: #606060;
+    }
+}
+
+

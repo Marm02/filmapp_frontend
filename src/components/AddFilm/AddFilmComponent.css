@@ -1,0 +1,33 @@
+.inputfile {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+.inputfile + label {
+    font-weight: 600;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor: pointer;
+    display: inline;
+    overflow: hidden;
+}
+
+.no-js .inputfile + label {
+    display: none;
+}
+
+.inputfile + label:hover {
+    color: #3ba8c5;
+}
+
+.box.has-advanced-upload {
+    background-color: #e9ecef;
+    border-radius: .3rem;
+}
+.box.has-advanced-upload .box__dragndrop {
+    display: inline;
+}
