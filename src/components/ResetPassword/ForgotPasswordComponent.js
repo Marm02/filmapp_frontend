@@ -52,12 +52,9 @@ class ForgotPasswordComponent extends React.Component {
 
         axios.post(`${config.apiUrl}users/password/forgot`, {email: this.state.user.email} )
             .then(res => {
-                console.log(res);
                 this.setState({emailSend: true, emailSending: false});
             })
             .catch(err => {
-                console.log(JSON.stringify(err));
-
                 let errorMessage = '';
 
                 if(err.response && err.response.data && err.response.data.errors)

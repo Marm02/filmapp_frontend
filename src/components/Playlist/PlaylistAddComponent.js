@@ -45,8 +45,6 @@ class PlaylistAddComponent extends Component {
         };
 
         const body = {films: [this.props.filmID]};
-        console.log(event.target);
-        console.log(index);
 
         let message = "";
 
@@ -100,9 +98,6 @@ class PlaylistAddComponent extends Component {
 
             }).catch(err => {
             this.setState({error: true, errorMessage: err.response.data.errors[0]});
-            console.log(err.response.data.errors[0]);
-            console.log(err);
-            console.log(JSON.stringify(err));
         })
     };
 
@@ -176,15 +171,10 @@ class PlaylistAddComponent extends Component {
 
         if(this.menuRef && this.menuRef.current){
 
-            console.log(this.menuRef.current.getBoundingClientRect())
-
             let tmpHeightBottom = height - (this.menuRef.current.getBoundingClientRect().top  +
                 this.menuRef.current.getBoundingClientRect().height) ;
 
             let tmpHeightTop = (this.menuRef.current.getBoundingClientRect().top );
-
-            console.log(tmpHeightBottom);
-            console.log(tmpHeightTop);
 
             if(tmpHeightBottom < contentHeight){
                 if(tmpHeightBottom > tmpHeightTop)
@@ -240,7 +230,6 @@ class PlaylistAddComponent extends Component {
 
                         {
                             this.state.playlists.map((playlist, index) => {
-                                console.log(playlist);
                                 return (<Col xs={12} sm={12} key={playlist.id}>
                                     <Row className="pl-4 pr-4">
                                         <Col xs={12} sm={12} className="p-0 mb-2">

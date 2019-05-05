@@ -11,8 +11,6 @@ export function authHeader() {
 
 export function loginHeader(username, password){
     let loginToken = window.btoa(username + ':' + password);
-    console.log("LOGIN TOKENNNNNNNNNNNNN")
-    console.log(loginToken)
     return { 'Authorization':  'Basic ' +  loginToken };
 
 }

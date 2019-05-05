@@ -39,7 +39,6 @@ class FilmsPreviewComponent extends Component {
                 }
             })
                 .then(res => {
-                    console.log("AXIOS MAD");
 
                     let films = res.data;
 
@@ -60,9 +59,6 @@ class FilmsPreviewComponent extends Component {
                     });
                 })
                 .catch((err) => {
-                    console.log("AXIOS MADxx");
-                    console.log(JSON.stringify(err));
-
                     this.setState({
                         error: err.message,
                         isLoading: false, isLoaded: true
@@ -184,7 +180,6 @@ class FilmsPreviewComponent extends Component {
             source.cancel();
             source = axios.CancelToken.source();
 
-            console.log("ON UPDATE FROM PREVIEW");
             this.setState({
                 isLoading: true,
                 isLoaded: false,
@@ -220,7 +215,6 @@ class FilmsPreviewComponent extends Component {
                             isLoading: false,
                             films: films
                         }, () => {
-                            console.log("ON UPDATE FROM PREVIEW ENDEEEEEEEEEEED");
                             this.props.handleLoading(this.state);
                         });
                     })

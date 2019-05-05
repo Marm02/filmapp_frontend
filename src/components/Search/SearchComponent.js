@@ -81,7 +81,6 @@ class SearchComponent extends Component {
             }
         });
         let params = queryString.parse(this.props.location.search);
-        console.log(params);
 
         this.setState({
             isLoading: true,
@@ -132,7 +131,6 @@ class SearchComponent extends Component {
                 }
             });
 
-            console.log("COMPNENT UPDATED2");
 
             this.setState({
 
@@ -164,9 +162,6 @@ class SearchComponent extends Component {
                         }
                     })
                 }
-
-                console.log(this.state.sorts);
-
 
                 axios.get(`${config.apiUrl}films/filter/title/?search=${this.state.search}&sort=${this.state.sort}&filter=${this.state.filter}&dir=${this.state.dir}`,
                     {params: {start: 0, limit: 5}})
@@ -286,7 +281,6 @@ class SearchComponent extends Component {
                 })
                 .then(res => {
                     const films = res.data;
-                    console.log(films);
                     this.setState({
                         hasMore: films.length < 1000,
                         films: [...this.state.films, ...films],
@@ -357,7 +351,6 @@ class SearchComponent extends Component {
     };
 
     setRedirect = (e, filmID) => {
-        console.log(e.target);
 
         if (e && e.target && (e.target.id === "s-c-1"
             || e.target.id === "s-c-2" || e.target.id === "s-c-3" || e.target.id === "s-c-4"
@@ -376,8 +369,6 @@ class SearchComponent extends Component {
         let filter = this.state.filter;
         let sort = this.state.sort;
         let dir = this.state.dir;
-
-        console.log(state);
 
         if (state === 'filter') {
             if (this.state.filter === type.id) {
@@ -406,11 +397,6 @@ class SearchComponent extends Component {
                     sort = '';
                     this.setState({dir: 1});
                 }
-
-
-                console.log(type.dir);
-                console.log(this.state.dir);
-
 
             } else {
                 this.setState({sort: type.id});

@@ -56,8 +56,6 @@ class HomeComponent extends Component {
             axios.get(`${config.apiUrl}users/me`, requestParams)
                 .then(res => {
                 }).catch(err => {
-                console.log(err);
-                console.log(JSON.stringify(err));
                 this.props.dispatch(userActions.logout());
             });
         }

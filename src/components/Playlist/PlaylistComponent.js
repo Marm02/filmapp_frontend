@@ -63,7 +63,6 @@ class PlaylistComponent extends Component {
                             return film;
                         })
                         .catch((err) => {
-                            console.log(JSON.stringify(err));
                             this.setState({
                                 error: err.message,
                             })
@@ -150,7 +149,6 @@ class PlaylistComponent extends Component {
 
         axios.delete(`${config.apiUrl}playlists/${this.state.id}`, requestParams)
             .then(res => {
-                console.log(res);
                 this.setState({openSnackbar: true, note: "Playlist deleted!"});
                 this.props.handleDeletePlaylist();
             }).catch(err => {
@@ -276,9 +274,7 @@ class PlaylistComponent extends Component {
                      className="p-0 playlist-container" xs={12} sm={12}>
                     <PerfectScrollbar
                         onYReachEnd={() => {
-                            console.log("REACH")
                         }} onScrollY={() => {
-                        console.log("DOWN")
                     }}>
                         {
                             this.state.films.map((film, index) => {

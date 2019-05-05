@@ -52,8 +52,6 @@ class ResetPasswordComponent extends React.Component {
 
         const {user} = this.state;
 
-        console.log(this.props.match.params.token);
-
         if (this.props.match.params.token && user.password && user.password.length >= 6) {
             axios.post(`${config.apiUrl}users/password/reset/${this.props.match.params.token}`,
                 {password: this.state.user.password})
@@ -69,12 +67,8 @@ class ResetPasswordComponent extends React.Component {
                         }.bind(this), 500);
                     }.bind(this), 1500);
 
-                    console.log(res);
-
                 })
                 .catch(err => {
-                    console.log(JSON.stringify(err));
-
                     let errorMessage = '';
 
                     if(err.response && err.response.data && err.response.data.errors)

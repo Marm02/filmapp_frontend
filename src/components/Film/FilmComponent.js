@@ -131,8 +131,6 @@ class FilmComponent extends Component {
                     this.setState({
                         isLoading: false
                     });
-                    console.log(err);
-                    console.log(JSON.stringify(err));
                 });
         }
 
@@ -157,9 +155,6 @@ class FilmComponent extends Component {
                             }
                         });
                     }).catch(err => {
-                        console.log(err);
-                        console.log(JSON.stringify(err));
-
                     });
 
             }).catch(err => {

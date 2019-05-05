@@ -104,7 +104,6 @@ class ProfileComponent extends Component {
 
         axios.delete(`${config.apiUrl}playlists/${id}`, requestParams)
             .then(res => {
-                console.log(res);
                 let playlists = this.state.playlists;
                 playlists.splice(index, 1);
 
@@ -174,8 +173,6 @@ class ProfileComponent extends Component {
 
             axios.get(`${config.apiUrl}users/me`, requestParams)
                 .then().catch(err => {
-                console.log(err);
-                console.log(JSON.stringify(err));
                 this.props.dispatch(userActions.logout());
             });
         }
@@ -197,8 +194,6 @@ class ProfileComponent extends Component {
                 .then(response => {
 
                     let films = response.data;
-
-                    console.log("FILMS ", films);
 
                     films.forEach(film => {
                         film.add = false;

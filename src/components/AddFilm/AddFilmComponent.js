@@ -71,22 +71,15 @@ class AddFilmComponent extends Component {
         film.set('thumbnail', this.state.thumbnail);
 
 
-        console.log(film);
-
         this.setState({isLoading: true}, () =>
             axios.post(`${config.apiUrl}films`,
                 film, requestOptions)
 
                 .then((response) => {
-                    console.log(response);
                     this.props.history.push(`${pathName}film/${response.data.id}`);
 
                 })
                 .catch((error) => {
-                    console.log(error);
-                    console.log(JSON.stringify(error));
-                    console.log(error.response.data);
-
                     if (error.response.data.error) {
                         this.setState({
                             isLoading: false,
@@ -122,7 +115,6 @@ class AddFilmComponent extends Component {
 
     handleFileChoose(event, type) {
         event.preventDefault();
-        console.log(event);
         switch (type) {
             case 'film':
                 this.setState({
@@ -150,7 +142,6 @@ class AddFilmComponent extends Component {
             filmName: files[0].name,
             filmPreview: URL.createObjectURL(files[0])
         });
-        console.log(files, event);
     };
 
     handleDropThumbnail = (files, event) => {
@@ -159,7 +150,6 @@ class AddFilmComponent extends Component {
             thumbnailName: files[0].name,
             thumbnailPreview: URL.createObjectURL(files[0])
         });
-        console.log(files, event);
     };
 
     render() {

@@ -165,7 +165,6 @@ class CommentsComponent extends Component {
                 .then(res => {
 
                     let film = res.data;
-                    console.log("LENGTH", film.comments.length)
                     this.setState({
                         hasMore: (film.comments.length > 0),
                         isLoading: false,
@@ -216,9 +215,7 @@ class CommentsComponent extends Component {
                 axios.get(`${config.apiUrl}films/${this.props.filmID}/desc`,
                     {cancelToken: source.token, params: {start: 0, limit: 5}})
                     .then(res => {
-                        console.log("UPDATING....", this.props.filmID)
                         let film = res.data;
-                        console.log("LENGTH", film.comments.length)
 
                         this.setState({
                             hasMore: (film.comments.length > 0),
@@ -268,6 +265,8 @@ class CommentsComponent extends Component {
             console.log(date.getMonth());
             console.log(date.getUTCMonth());
             console.log("MONTH");
+            console.log((date.getMonth() + 1));
+            console.log("date ", date.getDate());
 
             return ('0' + date.getDate()).slice(-2) + '-' + ('0' + (date.getMonth() + 1)).slice(-2) + '-'
                 + ('0' + date.getFullYear()).slice(-2)
