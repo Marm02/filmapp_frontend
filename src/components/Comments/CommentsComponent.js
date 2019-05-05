@@ -258,10 +258,17 @@ class CommentsComponent extends Component {
 
         const displayDate = (comment) => {
             let date = new Date(Date.parse(comment.createdAt));
+            console.log(date);
+            console.log(date.getDay());
+            console.log(('0' + date.getDay()));
+            console.log(('0' + date.getDay()));
+            console.log(('0' + date.getDay()).slice(-2));
+
             return ('0' + date.getDay()).slice(-2) + '-' + ('0' + date.getMonth()).slice(-2) + '-'
                 + ('0' + date.getFullYear()).slice(-2)
                 + ' o ' + ('0' + date.getHours()).slice(-2) + ':' + ('0' + date.getMinutes()).slice(-2);
         };
+
 
         let {commentsLength} = this.props;
         commentsLength += this.state.addedCount;
