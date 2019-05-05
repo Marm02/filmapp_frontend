@@ -183,10 +183,10 @@ class NavbarComponent extends Component {
 
                                         ) :
                                     (<Nav.Link onClick={() => {
-                                        if (this.props.location.pathname === '/')
+                                       /* if (this.props.location.pathname === '/filmapp_frontend/')
                                             this.props.history.push(`/login`);
-                                        else
-                                            this.props.history.push(`${this.props.location.pathname}/login${this.props.location.search}`)
+                                        else*/
+                                        this.props.history.push(`${this.props.location.pathname}/login${this.props.location.search}`)
                                     }
                                     } className="pr-2 pl-2" eventKey="login">Login</Nav.Link>)
                             }

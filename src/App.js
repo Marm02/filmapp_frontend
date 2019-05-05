@@ -66,16 +66,16 @@ class App extends Component {
 
                     <Route  component={() => <NavbarComponent location={history.location} history={history}/>}/>
 
-                    <Route exact path={["/login", "/film/:id/login", "/search/login", "/add/login", "/playlists/login"]}
+                    <Route exact path={["/filmapp_frontend/login", "/film/:id/login", "/search/login", "/add/login", "/playlists/login"]}
                            component={LoginComponent}/>
 
-                    <Route exact path={["/register", "/film/:id/register", "/search/register", "/add/register", "/playlists/register"]}
+                    <Route exact path={["/filmapp_frontend/register", "/film/:id/register", "/search/register", "/add/register", "/playlists/register"]}
                            component={RegisterComponent}/>
 
-                    <Route exact path={["/reset/:token", "/film/:id/reset/:token", "/search/reset/:token", "/add/reset/:token", "/playlists/reset/:token"]}
+                    <Route exact path={["/filmapp_frontend/reset/:token", "/film/:id/reset/:token", "/search/reset/:token", "/add/reset/:token", "/playlists/reset/:token"]}
                            component={ResetPasswordComponent}/>
 
-                    <Route exact path={["/forgot", "/film/:id/forgot", "/search/forgot", "/add/forgot", "/playlists/forgot"]}
+                    <Route exact path={["/filmapp_frontend/forgot", "/film/:id/forgot", "/search/forgot", "/add/forgot", "/playlists/forgot"]}
                            component={ForgotPasswordComponent}/>
 
                     <Switch>
@@ -83,7 +83,8 @@ class App extends Component {
                         <Route exact path={["/film/:id", "/film/:id/login", "/film/:id/register", "/film/:id/reset/:token",
                             "/film/:id/forgot"]} component={FilmComponent}/>
 
-                        <Route exact path={["/", "/login", "/register", "/reset/:token", "/forgot"]} component={HomeComponent}/>
+                        <Route exact path={["/filmapp_frontend", "/filmapp_frontend/login", "/filmapp_frontend/register",
+                            "/filmapp_frontend/reset/:token", "/filmapp_frontend/forgot"]} component={HomeComponent}/>
 
                         <Route exact path={["/search", "/search/login", "/search/register", "/search/reset/:token", "/search/forgot"]} component={SearchComponent}/>
 
