@@ -11,6 +11,8 @@ import {userActions} from "../../actions";
 import {authHeader} from "../../helpers";
 import connect from "react-redux/es/connect/connect";
 
+const pathName = config.pathName;
+
 class AllPlaylistsComponent extends Component {
 
 
@@ -154,7 +156,7 @@ class AllPlaylistsComponent extends Component {
 
     setRedirect = (playlistID, filmID) => {
         this.props.history.push({
-            pathname: '/film/' + filmID,
+            pathname: `${pathName}film/` + filmID,
             search: `?list=${playlistID}`
         });
     };

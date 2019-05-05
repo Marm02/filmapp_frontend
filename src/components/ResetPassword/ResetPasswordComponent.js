@@ -7,6 +7,7 @@ import {userActions} from "../../actions";
 import {config} from "../../config";
 import axios from 'axios';
 
+const pathName = config.pathName;
 class ResetPasswordComponent extends React.Component {
     constructor(props) {
         super(props);
@@ -62,9 +63,9 @@ class ResetPasswordComponent extends React.Component {
 
                     setTimeout(function () {
                         this.setState({show: false});
-                        this.props.history.push('/');
+                        this.props.history.push(`${pathName}`);
                         setTimeout(function () {
-                            this.props.history.push('/login');
+                            this.props.history.push(`${pathName}login`);
                         }.bind(this), 500);
                     }.bind(this), 1500);
 
@@ -91,7 +92,7 @@ class ResetPasswordComponent extends React.Component {
 
         let modalClose = () => {
             this.setState({show: false});
-            this.props.history.push('/');
+            this.props.history.push(`${pathName}`);
         };
 
         const {user, submitted, resetSuccessful, resetRequested, resetError, errorMessage} = this.state;

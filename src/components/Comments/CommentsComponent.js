@@ -14,6 +14,7 @@ import "../../../node_modules/video-react/dist/video-react.css";
 
 const CancelToken = axios.CancelToken;
 let source = CancelToken.source();
+const pathName = config.pathName;
 
 class CommentsComponent extends Component {
 
@@ -73,7 +74,7 @@ class CommentsComponent extends Component {
     addComment = () => {
 
         if (!localStorage.getItem('user')) {
-            this.props.history.push(`/film/${this.state.filmID}/login`);
+            this.props.history.push(`${pathName}film/${this.state.filmID}/login`);
             return;
         }
 

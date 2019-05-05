@@ -24,6 +24,7 @@ const CancelToken = axios.CancelToken;
 let source = CancelToken.source();
 
 const windowBreakpoint = 768;
+const pathName = config.pathName;
 
 class FilmComponent extends Component {
 
@@ -113,7 +114,7 @@ class FilmComponent extends Component {
     updateMeta = (meta) => {
 
         if (meta !== 'views' && !localStorage.getItem('user')) {
-            this.props.history.push(`/film/${this.state.film.filmID}/login`);
+            this.props.history.push(`${pathName}film/${this.state.film.filmID}/login`);
             return;
         }
 
@@ -194,7 +195,7 @@ class FilmComponent extends Component {
                 poster: "https://thumbs.gfycat.com/VibrantHeavyFrogmouth-size_restricted.gif"
             }
         }, () => {
-            this.props.history.push('/film/' + filmID);
+            this.props.history.push(`${pathName}film/` + filmID);
             this.props.dispatch(userActions.rate('CHECK_RATE'));
             window.scrollTo(0, 0);
 

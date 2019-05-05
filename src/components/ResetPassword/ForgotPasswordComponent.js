@@ -7,6 +7,7 @@ import {userActions} from "../../actions";
 import {config} from "../../config";
 import axios from 'axios';
 
+
 class ForgotPasswordComponent extends React.Component {
     constructor(props) {
         super(props);

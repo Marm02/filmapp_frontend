@@ -19,6 +19,7 @@ import {authHeader} from "../../helpers";
 import Snackbar from "@material-ui/core/Snackbar/Snackbar";
 import TextTruncate from "react-text-truncate";
 
+const pathName = config.pathName;
 
 class PlaylistComponent extends Component {
 
@@ -26,7 +27,7 @@ class PlaylistComponent extends Component {
     setRedirect = (filmID) => {
         this.props.history.push(
             {
-                pathname: '/film/' + filmID,
+                pathname: `${pathName}film/` + filmID,
                 search: `?list=${this.state.playlist.id}`
             });
         this.props.handleSubmit(filmID);

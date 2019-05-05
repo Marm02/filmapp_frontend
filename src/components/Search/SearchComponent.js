@@ -19,6 +19,8 @@ import TextTruncate from "react-text-truncate";
 import Truncate from "react-truncate";
 import {isMobile} from 'react-device-detect'
 
+const pathName = config.pathName;
+
 let filters = [
     {id: 'last_hour', title: 'Last hour'},
     {id: 'today', title: 'Today'},
@@ -361,7 +363,7 @@ class SearchComponent extends Component {
             || e.target.id === "s-c-2" || e.target.id === "s-c-3" || e.target.id === "s-c-4"
             || (e.target.localName === "path" && e.target.parentElement && e.target.parentElement.parentElement
                 && e.target.parentElement.parentElement.id !== "a-b-2"))) {
-            this.props.history.push('/film/' + filmID);
+            this.props.history.push(`${pathName}film/` + filmID);
         }
 
     };

@@ -4,6 +4,7 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {PlaylistAddComponent} from './PlaylistAddComponent'
 import connect from "react-redux/es/connect/connect";
 
+
 class PlaylistAddButtonComponent extends Component {
 
     constructor(props) {

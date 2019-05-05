@@ -14,6 +14,10 @@ import './NavbarComponent.css';
 import Menu from "@material-ui/core/Menu/Menu";
 import MenuItem from "@material-ui/core/MenuItem/MenuItem";
 
+import ico from '../../images/ico.png';
+
+const pathName = config.pathName;
+
 class NavbarComponent extends Component {
 
     constructor(props) {
@@ -34,10 +38,10 @@ class NavbarComponent extends Component {
                 this.props.dispatch(userActions.logout());
             }
         } else if (eventKey === 'add_film') {
-            this.props.history.push(`/add`);
+            this.props.history.push(`${pathName}add`);
 
         }else if (eventKey === 'playlists'){
-            this.props.history.push('/playlists')
+            this.props.history.push(`${pathName}playlists`)
         }
     }
 
@@ -66,19 +70,19 @@ class NavbarComponent extends Component {
                 if (films.length === 0) {
 
                     this.props.history.push({
-                        pathname: '/search',
+                        pathname: `${pathName}search`,
                         search: `?search=${search}`,
                         state: {films: films}
                     });
 
                 } else if (films.length === 1) {
-                    this.props.history.push(`/film/${films[0]._id}`);
+                    this.props.history.push(`${pathName}film/${films[0]._id}`);
 
                 } else {
 
 
                     this.props.history.push({
-                        pathname: '/search',
+                        pathname: `${pathName}search`,
                         search: `?search=${search}`,
                         state: {films: films}
                     });
@@ -110,7 +114,7 @@ class NavbarComponent extends Component {
 
     handleProfileClick = () => {
         this.setState({ anchorEl: null });
-        this.props.history.push('/profile');
+        this.props.history.push(`${pathName}profile`);
     };
 
     render() {
@@ -139,11 +143,11 @@ class NavbarComponent extends Component {
                     onSelect={k => this.handleSelect(k)}>
 
                 <Col xs={{span: 6, order: 1}} sm={{span: 2, order: 1}} md={{span: 4, order: 1}}>
-                    <Navbar.Brand href="/">
+                    <Navbar.Brand href={pathName}>
                         <Navbar.Brand>
                             {
                                 <img alt=""
-                                     src='https://avatarfiles.alphacoders.com/148/thumb-14824.png' width="30"
+                                     src={ico} width="30"
                                      height="30"/>
                             }
                         </Navbar.Brand>
@@ -183,10 +187,10 @@ class NavbarComponent extends Component {
 
                                         ) :
                                     (<Nav.Link onClick={() => {
-                                       /* if (this.props.location.pathname === '/filmapp_frontend/')
-                                            this.props.history.push(`/login`);
-                                        else*/
-                                        this.props.history.push(`${this.props.location.pathname}/login${this.props.location.search}`)
+                                        if (this.props.location.pathname === '/filmapp_frontend/')
+                                            this.props.history.push(`${pathName}login`);
+                                        else
+                                            this.props.history.push(`${this.props.location.pathname}/login${this.props.location.search}`)
                                     }
                                     } className="pr-2 pl-2" eventKey="login">Login</Nav.Link>)
                             }

@@ -11,6 +11,7 @@ import axios from "axios";
 
 const CHOOSE_FILM = `Choose a film `;
 const CHOOSE_THUMBNAIL = `Choose a thumbnail `;
+const pathName = config.pathName;
 
 class AddFilmComponent extends Component {
 
@@ -55,7 +56,7 @@ class AddFilmComponent extends Component {
         this.setState({submitted: true});
 
         if (!localStorage.getItem('user')) {
-            this.props.history.push(`/add/login`);
+            this.props.history.push(`${pathName}add/login`);
             return;
         }
 
@@ -78,7 +79,7 @@ class AddFilmComponent extends Component {
 
                 .then((response) => {
                     console.log(response);
-                    this.props.history.push(`/film/${response.data.id}`);
+                    this.props.history.push(`${pathName}film/${response.data.id}`);
 
                 })
                 .catch((error) => {

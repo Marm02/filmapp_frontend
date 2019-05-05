@@ -14,6 +14,7 @@ import {PlaylistAddButtonComponent} from "../Playlist/PlaylistAddButtonComponent
 import Snackbar from '@material-ui/core/Snackbar';
 import TextTruncate from "react-text-truncate";
 import {isMobile} from 'react-device-detect'
+const pathName = config.pathName;
 
 class HomeComponent extends Component {
 
@@ -215,7 +216,7 @@ class HomeComponent extends Component {
     };
 
     setRedirect = (filmID) => {
-        this.props.history.push('/film/' + filmID);
+        this.props.history.push(`${pathName}film/` + filmID);
     };
 
 

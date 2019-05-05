@@ -15,6 +15,8 @@ import Snackbar from '@material-ui/core/Snackbar';
 import Button from '@material-ui/core/Button';
 import connect from "react-redux/es/connect/connect";
 
+const pathName = config.pathName;
+
 class ProfileComponent extends Component {
 
 
@@ -85,12 +87,12 @@ class ProfileComponent extends Component {
     setRedirect = (filmID, playlistID) => {
         playlistID ?
             this.props.history.push({
-                pathname: '/film/' + filmID,
+                pathname: `${pathName}film/` + filmID,
                 search: `?list=${playlistID}`
             })
             :
             this.props.history.push({
-                pathname: '/film/' + filmID
+                pathname: `${pathName}film/` + filmID
             });
     };
 
