@@ -28,7 +28,7 @@ self.__precacheManifest = [
     "url": "/filmapp_frontend/static/css/2.ae47fa2f.chunk.css"
   },
   {
-    "revision": "12d299b256ed0bc58752a2afa104174d",
+    "revision": "92853471f9bafa0a50ad3fbb3dbebcdb",
     "url": "/filmapp_frontend/index.html"
   }
 ];
