@@ -14,6 +14,7 @@
     "bootstrap": "^4.3.1",
     "bootstrap-fileinput": "^5.0.2",
     "config": "^3.0.1",
+    "es6-polyfills": "^2.0.0",
     "es6-promise": "^4.2.6",
     "gh-pages": "^2.0.1",
     "history": "latest",
