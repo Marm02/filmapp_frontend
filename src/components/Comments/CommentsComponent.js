@@ -255,18 +255,6 @@ class CommentsComponent extends Component {
 
         const displayDate = (comment) => {
             let date = new Date(Date.parse(comment.createdAt));
-            console.log(date);
-            console.log(date.getDate());
-            console.log(date.getUTCDay());
-            console.log(date.getUTCDay());
-            console.log(('0' + date.getDay()));
-            console.log(('0' + date.getDay()));
-            console.log(('0' + date.getDay()).slice(-2));
-            console.log(date.getMonth());
-            console.log(date.getUTCMonth());
-            console.log("MONTH");
-            console.log((date.getMonth() + 1));
-            console.log("date ", date.getDate());
 
             return ('0' + date.getDate()).slice(-2) + '-' + ('0' + (date.getMonth() + 1)).slice(-2) + '-'
                 + ('0' + date.getFullYear()).slice(-2)
