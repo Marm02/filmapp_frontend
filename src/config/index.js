@@ -1,4 +1,4 @@
 export const config = {
-    apiUrl: 'http://localhost:9000/api/',
+    apiUrl: 'https://my-film-app.herokuapp.com/',
     pathName: '/filmapp_frontend/'
 };
