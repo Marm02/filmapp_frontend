@@ -267,6 +267,7 @@ class CommentsComponent extends Component {
             console.log(('0' + date.getDay()).slice(-2));
             console.log(date.getMonth());
             console.log(date.getUTCMonth());
+            console.log("MONTH");
 
             return ('0' + date.getDay()).slice(-2) + '-' + ('0' + date.getMonth()).slice(-2) + '-'
                 + ('0' + date.getFullYear()).slice(-2)
