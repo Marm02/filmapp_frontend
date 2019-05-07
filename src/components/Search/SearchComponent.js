@@ -528,9 +528,11 @@ class SearchComponent extends Component {
                                                     <Row className="m-0">
                                                         <Col xs={8} sm={8} className="p-0">
 
-                                                            <TextTruncate line={2} id="s-c-2"
-                                                                          className="mb-1 title-search font-weight-bold"
-                                                                          text={film.title}/>
+                                                            <Truncate lines={1} id="s-c-2"
+                                                                      className="mb-1 title-search font-weight-bold">
+                                                                {film.title}
+                                                            </Truncate>
+
                                                         </Col>
 
                                                         {
