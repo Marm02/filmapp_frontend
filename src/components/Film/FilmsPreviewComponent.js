@@ -23,13 +23,15 @@ class FilmsPreviewComponent extends Component {
 
     loadFilms = () => {
 
-
+        source.cancel();
+        source = axios.CancelToken.source();
 
         this.setState({isLoading: true}, () => {
 
             this.props.handleLoading(this.state);
 
             axios.get(`${config.apiUrl}films`, {
+                cancelToken: source.token,
                 params: {
                     exclude: this.state.filmID,
                     start: this.state.films.length,
@@ -196,7 +198,7 @@ class FilmsPreviewComponent extends Component {
                     params: {
                         exclude: this.state.filmID,
                         start: 0,
-                        limit: 8
+                        limit: 4
                     }
                 })
                     .then(res => {
