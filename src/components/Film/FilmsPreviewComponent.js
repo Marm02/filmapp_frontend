@@ -39,6 +39,7 @@ class FilmsPreviewComponent extends Component {
                 }
             })
                 .then(res => {
+                    console.log(res);
 
                     let films = res.data;
 
