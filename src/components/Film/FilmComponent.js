@@ -284,7 +284,7 @@ class FilmComponent extends Component {
                             description: film.description,
                             likes: film.thumbsUp,
                             dislikes: film.thumbsDown,
-                            //videoSrc: `${config.apiUrl}films/${this.props.match.params.id}`,
+                            videoSrc: `${config.apiUrl}films/${this.props.match.params.id}`,
                             commentsLength: film.commentsLength
                         },
                         isMounted: true
