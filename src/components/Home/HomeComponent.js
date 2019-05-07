@@ -17,9 +17,6 @@ import {isMobile} from 'react-device-detect'
 
 const pathName = config.pathName;
 
-const CancelToken = axios.CancelToken;
-let source = CancelToken.source();
-
 class HomeComponent extends Component {
 
 
@@ -57,13 +54,10 @@ class HomeComponent extends Component {
 
         if (localStorage.getItem('user')) {
 
-            source.cancel();
-            source = axios.CancelToken.source();
 
-            axios.get(`${config.apiUrl}users/me`, {cancelToken: source.token, requestParams})
+            axios.get(`${config.apiUrl}users/me`, requestParams)
                 .then(res => {
                 }).catch(err => {
-                if (!axios.isCancel(err))
                     this.props.dispatch(userActions.logout());
             });
         }
