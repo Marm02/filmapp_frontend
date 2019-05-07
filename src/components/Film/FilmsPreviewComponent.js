@@ -35,7 +35,7 @@ class FilmsPreviewComponent extends Component {
                 params: {
                     exclude: this.state.filmID,
                     start: this.state.films.length,
-                    limit: 4
+                    limit: 8
                 }
             })
                 .then(res => {
@@ -198,7 +198,7 @@ class FilmsPreviewComponent extends Component {
                     params: {
                         exclude: this.state.filmID,
                         start: 0,
-                        limit: 4
+                        limit: 8
                     }
                 })
                     .then(res => {
@@ -290,7 +290,7 @@ class FilmsPreviewComponent extends Component {
 
                 <Col style={{height: 40}} sm={12} className="mb-2 text-center">
                     {
-                        (this.state.isLoading && this.state.hasMore && this.state.isLoaded) &&
+                        (this.state.isLoading && this.state.hasMore ) &&
                         <Spinner animation="border"/>
                     }
                 </Col>
