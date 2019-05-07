@@ -63,7 +63,8 @@ class HomeComponent extends Component {
             axios.get(`${config.apiUrl}users/me`, {cancelToken: source.token, requestParams})
                 .then(res => {
                 }).catch(err => {
-                this.props.dispatch(userActions.logout());
+                if (!axios.isCancel(err))
+                    this.props.dispatch(userActions.logout());
             });
         }
 
