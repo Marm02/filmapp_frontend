@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/filmapp_frontend/precache-manifest.77ee0a40c7020e004eb1021a5397f1b8.js"
+  "/filmapp_frontend/precache-manifest.a22b236b6dd1f5f0e99fdce28502a348.js"
 );
 
 workbox.clientsClaim();
