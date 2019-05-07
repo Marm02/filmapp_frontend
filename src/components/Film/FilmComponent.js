@@ -278,7 +278,7 @@ class FilmComponent extends Component {
                         film: {
                             ...this.state.film,
                             thumbnail: film.thumbnail,
-                            poster: `${config.apiUrl}films/${this.state.film.filmID}/thumbnail/${film.thumbnail._id}`,
+                            poster: `${config.apiUrl}films/${this.state.film.filmID}/thumbnail/${film.thumbnail._id}?width=poster`,
                             views: film.views + 1,
                             title: film.title,
                             description: film.description,
@@ -289,6 +289,7 @@ class FilmComponent extends Component {
                         },
                         isMounted: true
                     });
+
 
                     this.updateMeta('views');
 
@@ -389,7 +390,7 @@ class FilmComponent extends Component {
                         this.setState({
                             film: {
                                 ...this.state.film,
-                                poster: `${config.apiUrl}films/${this.state.film.filmID}/thumbnail/${film.thumbnail._id}`,
+                                poster: `${config.apiUrl}films/${this.state.film.filmID}/thumbnail/${film.thumbnail._id}?width=poster`,
                             }
                         });
 
@@ -424,9 +425,9 @@ class FilmComponent extends Component {
                     <Col md={8}>
                         {
                                 <Col className="mt-4" sm={12}>
-                                <div className="embed-responsive embed-responsive-16by9 z-depth-1-half"
+                                <div className=""
                                      ref={(filmElement) => this.filmElement = filmElement}>
-                                    <Player className="embed-responsive-item"
+                                    <Player className=""
                                             playsInline
                                             poster={this.state.film.poster}
                                             src={this.state.film.videoSrc}

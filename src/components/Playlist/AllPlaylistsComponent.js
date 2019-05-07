@@ -188,7 +188,7 @@ class AllPlaylistsComponent extends Component {
                                             <img
                                                 alt=""
                                                 className="embed-responsive-item image"
-                                                src={`${config.apiUrl}films/${filmID}/thumbnail/${playlist.thumbnail}?width=250`}
+                                                src={`${config.apiUrl}films/${filmID}/thumbnail/${playlist.thumbnail}?width=small`}
                                                 onClick={() => this.setRedirect(playlistID, filmID)}/>
                                         }
                                         <Row className="middle">

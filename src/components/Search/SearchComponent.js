@@ -298,7 +298,6 @@ class SearchComponent extends Component {
         let today = new Date();
 
 
-
         let time = Math.abs(Math.floor((
             Date.UTC(
                 date.getFullYear(),
@@ -514,13 +513,14 @@ class SearchComponent extends Component {
 
                                         let lines = this.state.windowWidth < 1200 && this.state.windowWidth > 576 ? 1 : 2;
 
-                                        return <Col xs={12} sm={12} lg={8} className="film-preview-holder mb-1 container-search"
+                                        return <Col xs={12} sm={12} lg={8}
+                                                    className="film-preview-holder m-0 mb-1 container"
                                                     onClick={(e) => this.setRedirect(e, film.id)} key={film.id}>
                                             <Row className="d-sm-none mb-4">
                                                 <Col xs={8} sm={4}>
                                                     <div className="embed-responsive embed-responsive-16by9 z-depth-1-half">
                                                         <img alt="" id="s-c-1" className="image embed-responsive-item"
-                                                             src={`${config.apiUrl}films/${film.id}/thumbnail/${film.thumbnail._id}?width=250`}/>
+                                                             src={`${config.apiUrl}films/${film.id}/thumbnail/${film.thumbnail._id}?width=small`}/>
                                                         <FontAwesomeIcon className="middle" icon="play"/>
                                                     </div>
                                                 </Col>
@@ -529,16 +529,23 @@ class SearchComponent extends Component {
                                                         <Col xs={10} sm={10} className="p-0">
 
                                                             <TextTruncate line={1} id="s-c-2"
-                                                               className="mb-1 title-search font-weight-bold" text={film.title}/>
+                                                                          className="mb-1 title-search font-weight-bold"
+                                                                          text={film.title}/>
                                                         </Col>
 
-                                                        <PlaylistAddButtonComponent parentName="search"
-                                                                                    filmID={film.id}
-                                                                                    show={film.add} index={index}
-                                                                                    handleAddPlaylistButtonClick={this.handleAddPlaylistButtonClick}
-                                                                                    handleClick={this.handleCreatePlaylistClick}
-                                                                                    handleClickOutside={this.handleClickOutside}
-                                                                                    handlePlaylistOperation={this.handlePlaylistOperation}/>
+                                                        {
+                                                            this.state.windowWidth < 576 &&
+                                                            <PlaylistAddButtonComponent parentName="search"
+                                                                                        filmID={film.id}
+                                                                                        show={film.add} index={index}
+
+                                                                                        handleAddPlaylistButtonClick={this.handleAddPlaylistButtonClick}
+                                                                                        handleClick={this.handleCreatePlaylistClick}
+                                                                                        handleClickOutside={this.handleClickOutside}
+                                                                                        handlePlaylistOperation={this.handlePlaylistOperation}/>
+
+                                                        }
+
                                                     </Row>
                                                     <p id="s-c-3" className="mb-0 author-nick">
                                                         <small>{film.author_name} &#183; {film.views} views</small>
@@ -553,7 +560,7 @@ class SearchComponent extends Component {
                                                         <div
                                                             className="embed-responsive embed-responsive-16by9 z-depth-1-half">
                                                             <img alt="" id="s-c-1" className="image embed-responsive-item"
-                                                                 src={`${config.apiUrl}films/${film.id}/thumbnail/${film.thumbnail._id}?width=250`}/>
+                                                                 src={`${config.apiUrl}films/${film.id}/thumbnail/${film.thumbnail._id}?width=small`}/>
                                                             <FontAwesomeIcon className="middle" icon="play"/>
                                                         </div>
                                                     </Col>
@@ -561,25 +568,29 @@ class SearchComponent extends Component {
                                                         <Row className="m-0">
                                                             <Col xs={10} sm={10} className="p-0 mb-1">
                                                                 <Truncate lines={lines} id="s-c-2"
-                                                                   className="mb-0 title-search font-weight-bold">
-                                                                   {film.title}
+                                                                          className="mb-0 title-search font-weight-bold">
+                                                                    {film.title}
                                                                 </Truncate>
                                                             </Col>
 
-                                                            <PlaylistAddButtonComponent parentName="search"
-                                                                                        filmID={film.id}
-                                                                                        show={film.add} index={index}
-                                                                                        handleAddPlaylistButtonClick={this.handleAddPlaylistButtonClick}
-                                                                                        handleClick={this.handleCreatePlaylistClick}
-                                                                                        handleClickOutside={this.handleClickOutside}
-                                                                                        handlePlaylistOperation={this.handlePlaylistOperation}/>
+                                                            {
+                                                                this.state.windowWidth >= 576 &&
+                                                                <PlaylistAddButtonComponent parentName="search"
+                                                                                            filmID={film.id}
+                                                                                            show={film.add} index={index}
+
+                                                                                            handleAddPlaylistButtonClick={this.handleAddPlaylistButtonClick}
+                                                                                            handleClick={this.handleCreatePlaylistClick}
+                                                                                            handleClickOutside={this.handleClickOutside}
+                                                                                            handlePlaylistOperation={this.handlePlaylistOperation}/>
+                                                            }
                                                         </Row>
                                                         <p id="s-c-3" className="mb-1 author-nick-search">
                                                             <small>{film.author_name} &#183; {film.views} views &#183; {time}</small>
                                                         </p>
 
                                                         <small><TextTruncate id="s-c-4" className="mb-0 author-nick-search"
-                                                                      line={lines} text={film.description} /></small>
+                                                                             line={lines} text={film.description}/></small>
 
                                                     </Col>
                                                 </Row>

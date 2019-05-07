@@ -259,7 +259,7 @@ class ProfileComponent extends Component {
                                         <img
                                             alt=""
                                             className="embed-responsive-item image"
-                                            src={`${config.apiUrl}films/${film.id}/thumbnail/${film.thumbnail._id}?width=250`}
+                                            src={`${config.apiUrl}films/${film.id}/thumbnail/${film.thumbnail._id}?width=small`}
                                             onClick={() => this.setRedirect(filmID)}/>
                                     }
                                     <FontAwesomeIcon className="middle" icon="play"
@@ -321,7 +321,7 @@ class ProfileComponent extends Component {
                                     {
                                         <img alt=""
                                              className="embed-responsive-item image"
-                                             src={`${config.apiUrl}films/${filmID}/thumbnail/${playlist.thumbnail}?width=250`}
+                                             src={`${config.apiUrl}films/${filmID}/thumbnail/${playlist.thumbnail}?width=small`}
                                              />
                                     }
                                     <Row className="middle">

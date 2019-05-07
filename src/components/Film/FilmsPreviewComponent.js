@@ -253,7 +253,7 @@ class FilmsPreviewComponent extends Component {
                                         <div
                                             className="embed-responsive embed-responsive-16by9 z-depth-1-half">
                                             <img alt="" id="s-c-1" className="image embed-responsive-item"
-                                                 src={`${config.apiUrl}films/${film.id}/thumbnail/${film.thumbnail._id}?width=250`}/>
+                                                 src={`${config.apiUrl}films/${film.id}/thumbnail/${film.thumbnail._id}?width=small`}/>
                                             <FontAwesomeIcon className="middle" icon="play"/>
                                         </div>
                                     </Col>

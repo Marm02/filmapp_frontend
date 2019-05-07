@@ -14,6 +14,7 @@ import {PlaylistAddButtonComponent} from "../Playlist/PlaylistAddButtonComponent
 import Snackbar from '@material-ui/core/Snackbar';
 import TextTruncate from "react-text-truncate";
 import {isMobile} from 'react-device-detect'
+
 const pathName = config.pathName;
 
 class HomeComponent extends Component {
@@ -87,6 +88,8 @@ class HomeComponent extends Component {
 
                     films.forEach(film => {
                         film.add = false;
+                        film.img = `${config.apiUrl}films/${film.id}/thumbnail/${film.thumbnail._id}?width=preview`
+
                     });
                     this.setState({
                         hasMore: films.length >= Math.ceil(6 * limit),
@@ -98,6 +101,7 @@ class HomeComponent extends Component {
 
 
     }
+
 
     componentWillUnmount() {
         window.removeEventListener('scroll', this.handleScroll);
@@ -146,6 +150,7 @@ class HomeComponent extends Component {
             let array = this.state.films;
             array.forEach((film) => {
                 film.add = false;
+
             });
             this.setState({films: array, addOpenedIndex: -1})
         }
@@ -193,6 +198,7 @@ class HomeComponent extends Component {
 
                     films.forEach(film => {
                         film.add = false;
+                        film.img = `${config.apiUrl}films/${film.id}/thumbnail/${film.thumbnail._id}?width=preview`
                     });
 
                     this.setState({
@@ -221,6 +227,8 @@ class HomeComponent extends Component {
     render() {
         const {isLoading} = this.state;
         const {scroll} = this.state;
+        let films = this.state.films.map(a => Object.assign({}, a));
+        let numberOfLoadedImages = 0;
 
         return (
             <Col>
@@ -229,57 +237,64 @@ class HomeComponent extends Component {
                 <Row className="mt-5">
 
                     {
-                        this.state.films.map((film, index) => {
 
-                                const filmID = film.id;
+                        films.map((film, index) => {
+
+                            const filmID = film.id;
 
 
-                                return <Col className="mb-5 film-preview-holder" xs={6} sm={4} md={3} lg={2} key={film.id}>
-                                    <div className="embed-responsive embed-responsive-16by9 z-depth-1-half container">
-                                        {
-                                            <img
-                                                alt=""
-                                                className="embed-responsive-item image"
-                                                src={`${config.apiUrl}films/${film.id}/thumbnail/${film.thumbnail._id}?width=250`}
-                                                onClick={() => this.setRedirect(filmID)}/>
-                                        }
-                                        <FontAwesomeIcon className="middle" icon="play"
-                                                         onClick={() => this.setRedirect(filmID)}/>
+                            return <Col className="mb-5 film-preview-holder" xs={6} sm={4} md={3} lg={2} key={film.id}>
+                                <div className="embed-responsive embed-responsive-16by9 z-depth-1-half container">
+                                    {
+                                        <img
+                                            onLoad={() => {
+                                                if (film.img === `${config.apiUrl}films/${film.id}/thumbnail/${film.thumbnail._id}?width=preview`) {
+                                                    film.img = `${config.apiUrl}films/${film.id}/thumbnail/${film.thumbnail._id}?width=small`;
+                                                    numberOfLoadedImages++;
+                                                    if(numberOfLoadedImages >= films.length){
+                                                        this.setState({films: films});
+                                                    }
+                                                }
+                                            }}
+                                            alt=""
+                                            className="embed-responsive-item image"
+                                            src={film.img}
+                                            onClick={() => this.setRedirect(filmID)}/>
+                                    }
+                                    <FontAwesomeIcon className="middle" icon="play"
+                                                     onClick={() => this.setRedirect(filmID)}/>
 
-                                    </div>
+                                </div>
 
-                                    <Row className="m-0">
-                                        <Col xs={10} sm={10} className="p-0">
+                                <Row className="m-0">
+                                    <Col xs={10} sm={10} className="p-0">
 
-                                            <TextTruncate line={2} text={film.title}
-                                                          id="s-c-2"
-                                                          className="mb-1 mt-1 title "/>
+                                        <TextTruncate line={2} text={film.title}
+                                                      id="s-c-2"
+                                                      className="mb-1 mt-1 title "/>
 
-                                        </Col>
-                                        <Col xs={2} sm={2} className="p-0"  style={{position: 'absolute', right: 0}}>
+                                    </Col>
+                                    <Col xs={2} sm={2} className="p-0" style={{position: 'absolute', right: 0}}>
                                         <PlaylistAddButtonComponent
-                                                                    parentName="home"
-                                                                    filmID={film.id}
-                                                                    show={film.add} index={index}
-                                                                    handleAddPlaylistButtonClick={this.handleAddPlaylistButtonClick}
-                                                                    handleClick={this.handleCreatePlaylistClick}
-                                                                    handleClickOutside={this.handleClickOutside}
-                                                                    handlePlaylistOperation={this.handlePlaylistOperation}/>
-                                        </Col>
-                                    </Row>
-                                    <p className="mb-0 author-nick">
-                                        <small>{film.author_name}</small>
-                                    </p>
-                                    <p className="mb-0 film-views">
-                                        <small>{film.views} views</small>
-                                    </p>
+                                            parentName="home"
+                                            filmID={film.id}
+                                            show={film.add} index={index}
+                                            handleAddPlaylistButtonClick={this.handleAddPlaylistButtonClick}
+                                            handleClick={this.handleCreatePlaylistClick}
+                                            handleClickOutside={this.handleClickOutside}
+                                            handlePlaylistOperation={this.handlePlaylistOperation}/>
+                                    </Col>
+                                </Row>
+                                <p className="mb-0 author-nick">
+                                    <small>{film.author_name}</small>
+                                </p>
+                                <p className="mb-0 film-views">
+                                    <small>{film.views} views</small>
+                                </p>
 
-                                </Col>
+                            </Col>
 
-
-                            }
-                        )
-
+                        })
 
                     }
 
