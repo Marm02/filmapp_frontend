@@ -567,7 +567,7 @@ class FilmComponent extends Component {
                             }
 
                             {
-                                (this.state.windowWidth > windowBreakpoint) &&
+                                (this.state.windowWidth > windowBreakpoint) && this.state.isMounted &&
                                 <Col className="p-0 mt-4 d-none d-md-block" sm={12}>
                                     <FilmsPreviewComponent hasMoreFilms={this.state.hasMoreFilms}
                                                            isLoading={this.state.isLoadingFilms}
