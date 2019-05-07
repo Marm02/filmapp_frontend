@@ -23,7 +23,6 @@ class FilmsPreviewComponent extends Component {
 
     loadFilms = () => {
 
-        const t = Date.now();
 
 
         this.setState({isLoading: true}, () => {
@@ -34,12 +33,10 @@ class FilmsPreviewComponent extends Component {
                 params: {
                     exclude: this.state.filmID,
                     start: this.state.films.length,
-                    limit: 8,
-                    t: t
+                    limit: 4
                 }
             })
                 .then(res => {
-                    console.log(res);
 
                     let films = res.data;
 
@@ -254,7 +251,7 @@ class FilmsPreviewComponent extends Component {
                                         <div
                                             className="embed-responsive embed-responsive-16by9 z-depth-1-half">
                                             <img alt="" id="s-c-1" className="image embed-responsive-item"
-                                                 src={`${config.apiUrl}films/${film.id}/thumbnail/${film.thumbnail._id}?width=preview`}/>
+                                                 src={`${config.apiUrl}films/${film.id}/thumbnail/${film.thumbnail._id}?width=small`}/>
                                             <FontAwesomeIcon className="middle" icon="play"/>
                                         </div>
                                     </Col>
