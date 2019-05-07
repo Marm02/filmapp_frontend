@@ -427,11 +427,7 @@ class FilmComponent extends Component {
                                 <Col className="mt-4" sm={12}>
                                 <div className=""
                                      ref={(filmElement) => this.filmElement = filmElement}>
-                                    <Player className=""
-                                            playsInline
-                                            poster={this.state.film.poster}
-                                            src={this.state.film.videoSrc}
-                                    />
+
                                 </div>
                             </Col>
                         }
