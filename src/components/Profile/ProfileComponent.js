@@ -310,7 +310,7 @@ class ProfileComponent extends Component {
                     {
                         this.state.playlists.map((playlist, index) => {
 
-                            const filmID = playlist.films[0];
+                            const filmID = playlist.filmID;
                             const playlistID = playlist.id;
 
 
@@ -319,10 +319,17 @@ class ProfileComponent extends Component {
                                 <div onClick={() => this.setRedirect(filmID, playlistID)}
                                      className="embed-responsive embed-responsive-16by9 z-depth-1-half container">
                                     {
+                                        filmID !== null ?
                                         <img alt=""
                                              className="embed-responsive-item image"
                                              src={`${config.apiUrl}films/${filmID}/thumbnail/${playlist.thumbnail}?width=small`}
                                              />
+                                            :
+                                        <img alt=""
+                                             className="embed-responsive-item image"
+                                        src="https://www.atelierliving.nl/wp-content/themes/ctrln/assets/images/placeholder.png"
+                                             />
+
                                     }
                                     <Row className="middle">
                                         <Col xs={4} sm={4}>
