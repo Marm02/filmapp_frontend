@@ -174,12 +174,14 @@ class AllPlaylistsComponent extends Component {
                         this.state.playlists.map((playlist, index) => {
 
 
-                                const filmID = playlist.filmThumbnail ? playlist.filmThumbnail : playlist.films[0];
+                                const filmID = playlist.filmID;
 
                                 const playlistID = playlist.id;
 
-                                if(!playlist.thumbnail)
+                                if(!playlist.thumbnail){
+                                    console.log(playlist.thumbnail);
                                     return null;
+                                }
 
                                 return <Col className="mb-5 film-preview-holder" xs={6} sm={4} md={3} lg={2} key={playlist.id}>
                                     <div onClick={() => this.setRedirect(playlistID, filmID)}
