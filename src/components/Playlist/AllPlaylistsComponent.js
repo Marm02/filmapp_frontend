@@ -179,7 +179,6 @@ class AllPlaylistsComponent extends Component {
                                 const playlistID = playlist.id;
 
                                 if(!playlist.thumbnail){
-                                    console.log(playlist.thumbnail);
                                     return null;
                                 }
 

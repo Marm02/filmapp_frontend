@@ -135,6 +135,7 @@ class PlaylistAddComponent extends Component {
                     let playlists = response.data;
 
                     playlists.forEach(playlist => {
+                        console.log(playlist);
                         if (playlist.films.indexOf(this.props.filmID) > -1) {
                             playlist.contains = true;
                         } else {
@@ -190,10 +191,11 @@ class PlaylistAddComponent extends Component {
         }
 
         let alignRight = false;
+        let alignCenter = "";
 
         if(parentName === "search"){
             alignRight = true;
-        }else if(parentName === "home"){
+        }else if(parentName === "home" || parentName === "profile"){
             if (width >= 992) {
                 if (index % 6 === 5 || index % 6 === 4) {
                     alignRight = true;
@@ -210,6 +212,8 @@ class PlaylistAddComponent extends Component {
             } else {
                 if (index % 2 === 1) {
                     alignRight = true;
+                }else if(index % 2 === 0){
+                    alignCenter = "dropdown-center-playlist"
                 }
             }
         }
@@ -221,6 +225,7 @@ class PlaylistAddComponent extends Component {
                 {
                     this.state.loaded &&
                     <Dropdown.Menu
+                            className={alignCenter}
                             alignRight={alignRight}
                             style={{ height: contentHeight + "px", width: 240 + "px", overflowY: "scroll"}}
                             show={this.state.show}>
