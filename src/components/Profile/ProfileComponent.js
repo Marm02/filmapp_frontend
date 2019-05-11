@@ -143,10 +143,6 @@ class ProfileComponent extends Component {
 
             addOpenedIndex: -1,
 
-            redirect: false,
-
-            clickedOutside: false,
-
             error: false,
             isLoading: false,
 
@@ -242,7 +238,7 @@ class ProfileComponent extends Component {
         const {scroll} = this.state;
 
         return (
-            <Col>
+            <React.Fragment>
 
 
                 <Row className="mt-5">
@@ -254,7 +250,7 @@ class ProfileComponent extends Component {
 
 
                             return <Col className="mb-5 film-preview-holder playlist-remove-container" xs={6} sm={4} md={3} lg={2} key={film.id}>
-                                <div className="embed-responsive embed-responsive-16by9 z-depth-1-half container">
+                                <div className="embed-responsive embed-responsive-16by9 container">
                                     {
                                         <img
                                             alt=""
@@ -408,7 +404,7 @@ class ProfileComponent extends Component {
                     }}
                     message={<span id="message-id">{this.state.note}</span>}
                 />
-            </Col>
+            </React.Fragment>
 
         )
     }

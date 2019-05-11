@@ -27,17 +27,14 @@ class HomeComponent extends Component {
             films: [],
             addOpenedIndex: -1,
 
-            redirect: false,
-
-            clickedOutside: false,
-
             error: false,
             hasMore: false,
             isLoading: false,
+
             scroll: {},
             windowWidth: window.innerWidth,
 
-            open: false,
+            openSnackbar: false,
             note: ''
         };
 
@@ -89,7 +86,7 @@ class HomeComponent extends Component {
 
                     films.forEach(film => {
                         film.add = false;
-                        film.img = `${config.apiUrl}films/${film.id}/thumbnail/${film.thumbnail._id}?width=preview`
+                        film.img = `${config.apiUrl}films/${film.id}/thumbnail/${film.thumbnail._id}?width=small`
 
                     });
                     this.setState({
@@ -156,7 +153,7 @@ class HomeComponent extends Component {
             this.setState({films: array, addOpenedIndex: -1})
         }
 
-        this.setState({open: true, note: message});
+        this.setState({openSnackbar: true, note: message});
     };
 
     handleClickOutside = (index) => {
@@ -186,7 +183,7 @@ class HomeComponent extends Component {
             return;
         }
 
-        this.setState({open: false});
+        this.setState({openSnackbar: false});
     };
 
 
@@ -199,7 +196,7 @@ class HomeComponent extends Component {
 
                     films.forEach(film => {
                         film.add = false;
-                        film.img = `${config.apiUrl}films/${film.id}/thumbnail/${film.thumbnail._id}?width=preview`
+                        film.img = `${config.apiUrl}films/${film.id}/thumbnail/${film.thumbnail._id}?width=small`
                     });
 
                     this.setState({
@@ -248,15 +245,7 @@ class HomeComponent extends Component {
                                 <div className="embed-responsive embed-responsive-16by9 z-depth-1-half container">
                                     {
                                         <img
-                                            onLoad={() => {
-                                                if (film.img === `${config.apiUrl}films/${film.id}/thumbnail/${film.thumbnail._id}?width=preview`) {
-                                                    film.img = `${config.apiUrl}films/${film.id}/thumbnail/${film.thumbnail._id}?width=small`;
-                                                    numberOfLoadedImages++;
-                                                    if(numberOfLoadedImages >= films.length){
-                                                        this.setState({films: films});
-                                                    }
-                                                }
-                                            }}
+
                                             alt=""
                                             className="embed-responsive-item image"
                                             src={film.img}
@@ -331,7 +320,7 @@ class HomeComponent extends Component {
                         vertical: 'bottom',
                         horizontal: 'left',
                     }}
-                    open={this.state.open}
+                    open={this.state.openSnackbar}
                     autoHideDuration={3000}
                     onClose={this.handleClose}
                     ContentProps={{
