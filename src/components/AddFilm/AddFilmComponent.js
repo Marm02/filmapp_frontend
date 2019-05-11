@@ -8,6 +8,7 @@ import FileDrop from 'react-file-drop';
 import {config} from "../../config";
 import {authHeader} from "../../helpers";
 import axios from "axios";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 const CHOOSE_FILM = `Choose a film `;
 const CHOOSE_THUMBNAIL = `Choose a thumbnail `;
@@ -166,8 +167,8 @@ class AddFilmComponent extends Component {
                                       className="justify-content-center d-flex align-items-center embed-responsive-item text-center box has-advanced-upload">
                                 <input id="film" accept="video/mp4, video/ogg"
                                        onChange={event => this.handleFileChoose(event, 'film')}
-                                       type="file" ref={this.filmInput} className="inputfile"/>
-                                <label htmlFor="film">
+                                       type="file" ref={this.filmInput} className="inputfile" />
+                                <label htmlFor="film" >
 
                                     {
                                         this.state.filmName === CHOOSE_FILM &&
@@ -179,11 +180,25 @@ class AddFilmComponent extends Component {
                                     this.state.filmName === CHOOSE_FILM &&
                                     <span>or drop it here</span>
                                 }
+
                                 {
                                     this.state.filmPreview &&
-                                    <video muted={true} autoPlay={true} className="embed-responsive-item"
-                                           src={this.state.filmPreview}/>
+                                    <video muted={true} autoPlay={true} className="embed-responsive-item "
+                                           src={this.state.filmPreview}>
+                                    </video>
                                 }
+
+                                {
+                                    this.state.filmPreview &&
+                                    <Col style={{left:0, top: 0, position: 'absolute', width: 100 + '%', height: 100 + '%'}} className="add-item-opacity" />
+                                }
+
+                                {
+                                    this.state.filmPreview &&
+                                    <FontAwesomeIcon className="add-item-middle fa-3x" style={{color: "#ffffff"}} icon="times"
+                                    onClick={() => {this.setState({filmName: CHOOSE_FILM, filmPreview: null})}}/>
+                                }
+
                             </FileDrop>
                         </div>
                     </Col>
@@ -212,6 +227,17 @@ class AddFilmComponent extends Component {
                                     <img alt=""
                                          className="embed-responsive-item"
                                          src={this.state.thumbnailPreview}/>
+                                }
+
+                                {
+                                    this.state.thumbnailPreview &&
+                                    <Col style={{left:0, top: 0, position: 'absolute', width: 100 + '%', height: 100 + '%'}} className="add-item-opacity" />
+                                }
+
+                                {
+                                    this.state.thumbnailPreview &&
+                                    <FontAwesomeIcon className="add-item-middle fa-3x" style={{color: "#ffffff"}} icon="times"
+                                                     onClick={() => {this.setState({thumbnailName: CHOOSE_THUMBNAIL, thumbnailPreview: null})}}/>
                                 }
                             </FileDrop>
                         </div>

@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import Avatar from '@material-ui/core/Avatar';
 
-import {Button, Col, Form, FormControl, Nav, Navbar} from 'react-bootstrap';
+import {Button, Col, Form, Nav, Navbar} from 'react-bootstrap';
 import {userActions} from "../../actions";
 import {connect} from "react-redux";
 
@@ -16,7 +16,11 @@ import MenuItem from "@material-ui/core/MenuItem/MenuItem";
 
 import ico from '../../images/ico.png';
 
+import {AsyncTypeahead } from 'react-bootstrap-typeahead'; // ES2015
+
 const pathName = config.pathName;
+
+
 
 class NavbarComponent extends Component {
 
@@ -25,12 +29,15 @@ class NavbarComponent extends Component {
         this.state = {
             title: '',
             anchorEl: null,
+            films: [],
+            isLoading: false,
+            options: []
         };
 
         this.handleSearchSubmit = this.handleSearchSubmit.bind(this);
-        this.handleChange = this.handleChange.bind(this);
 
     }
+
 
     handleSelect(eventKey) {
         if (eventKey === 'login') {
@@ -45,26 +52,20 @@ class NavbarComponent extends Component {
         }
     }
 
-    handleChange(e) {
-        const {value} = e.target;
-        this.setState({
-            title: value
-        });
-
-    }
 
     handleSearchSubmit(e) {
         e.preventDefault();
 
         const search = this.state.title;
+        console.log(search)
         this.setState({title: ''});
 
         document.getElementById("search-form").reset();
 
 
-        axios.get(`${config.apiUrl}films/filter/title?search=${search}&p=1`)
+        axios.get(`${config.apiUrl}films/filter/title?search=${search}`)
             .then(result => {
-
+                console.log(result)
 
                 const films = result.data;
                 if (films.length === 0) {
@@ -76,7 +77,7 @@ class NavbarComponent extends Component {
                     });
 
                 } else if (films.length === 1) {
-                    this.props.history.push(`${pathName}film/${films[0]._id}`);
+                    this.props.history.push(`${pathName}film/${films[0].id}`);
 
                 } else {
 
@@ -117,11 +118,13 @@ class NavbarComponent extends Component {
         this.props.history.push(`${pathName}profile`);
     };
 
+
     render() {
 
         const {loggedIn} = this.props;
         const {anchorEl} = this.state;
         const isProfileMenuOpen = Boolean(anchorEl);
+
         const renderProfileMenu = (
             <Menu
                 anchorEl={anchorEl}
@@ -157,8 +160,30 @@ class NavbarComponent extends Component {
 
                 <Col xs={{span: 12, order: 12}} sm={{span: 8, order: 2}} md={{span: 5, order: 5}}>
                     <Form id="search-form" onSubmit={this.handleSearchSubmit} inline>
-                        <FormControl vaule={this.state.title} onChange={this.handleChange} type="text"
-                                     placeholder="Search"/>
+
+                        <AsyncTypeahead
+                            minLength={1    }
+                            placeholder="Search"
+                            onChange={(selected) => {
+                                const title = selected.length > 0 ? selected[0].title : '';
+                                this.setState({ title : title});
+                            }}
+                            id="async_typeahead"
+                            labelKey="title"
+                            isLoading={this.state.isLoading}
+                            onSearch={query => {
+                                this.setState({isLoading: true, title: query});
+                                axios.get(`${config.apiUrl}films/titles?search=${query}`)
+                                    .then(res => this.setState({
+                                        options: res.data,
+                                    }, () => {
+                                        this.setState({isLoading: false})
+                                    }));
+                            }}
+                            options={this.state.options}
+                        />
+
+
                         <Button onClick={this.handleSearchSubmit} className="d-none d-sm-inline ml-1"
                                 variant="light"><FontAwesomeIcon icon="search"/></Button>
                     </Form>

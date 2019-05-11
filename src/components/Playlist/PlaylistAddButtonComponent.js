@@ -3,7 +3,6 @@ import {Col} from "react-bootstrap";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {PlaylistAddComponent} from './PlaylistAddComponent'
 import connect from "react-redux/es/connect/connect";
-import TouchRipple from '@material-ui/core/ButtonBase/TouchRipple';
 import ButtonBase from "@material-ui/core/ButtonBase/ButtonBase";
 
 class PlaylistAddButtonComponent extends Component {

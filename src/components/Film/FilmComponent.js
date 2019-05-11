@@ -88,11 +88,11 @@ class FilmComponent extends Component {
 
         if ((window.innerHeight + document.documentElement.scrollTop) >= (document.body.offsetHeight - 150)) {
             this.setState({isLoadingFilms: true});
-            if(window.innerWidth <= windowBreakpoint){
-                if(!this.state.hasMoreFilms){
+            if (window.innerWidth <= windowBreakpoint) {
+                if (!this.state.hasMoreFilms) {
                     this.setState({isLoadingComments: true});
                 }
-            }else{
+            } else {
                 this.setState({isLoadingComments: true});
             }
         }
@@ -198,7 +198,7 @@ class FilmComponent extends Component {
     };
 
     handleSetThumbnailPlaylist = (filmID) => {
-        if( this.props.match.params.id !== filmID){
+        if (this.props.match.params.id !== filmID) {
             this.setState({
                 film: {
                     ...this.state.film,
@@ -222,7 +222,7 @@ class FilmComponent extends Component {
     };
 
     handleDeletePlaylist = () => {
-      this.setState({displayPlaylist: false});
+        this.setState({displayPlaylist: false});
     };
 
     componentDidMount() {
@@ -240,6 +240,7 @@ class FilmComponent extends Component {
             },
             isLoading: true
         }, () => {
+
 
             axios.get(`${config.apiUrl}films/${this.props.match.params.id}/desc/no`)
                 .then(res => {
@@ -288,10 +289,8 @@ class FilmComponent extends Component {
                             videoSrc: `${config.apiUrl}films/${this.props.match.params.id}`,
                             commentsLength: film.commentsLength
                         },
-                        isLoading:false,
                         isMounted: true
                     });
-
 
                     this.updateMeta('views');
 
@@ -400,7 +399,7 @@ class FilmComponent extends Component {
 
 
                     }).catch(err => {
-                        console.log(JSON.stringify(err));
+                    console.log(JSON.stringify(err));
                 })
             });
 
@@ -426,7 +425,7 @@ class FilmComponent extends Component {
                 <Row>
                     <Col md={8}>
                         {
-                                <Col className="mt-4" sm={12}>
+                            <Col className="mt-4" sm={12}>
                                 <div className=""
                                      ref={(filmElement) => this.filmElement = filmElement}>
                                     <Player className=""
@@ -463,14 +462,14 @@ class FilmComponent extends Component {
                                                 <FontAwesomeIcon icon="thumbs-down"/>
                                                 &ensp;{this.state.film.dislikes}</p>
                                         </Col>
-                                        <Col sm={12} className="mt-4 mb-4 divider" />
+                                        <Col sm={12} className="mt-4 mb-4 divider"/>
 
                                         <Col sm={12}>
                                             <TextTruncate line={!expanded && 2}
                                                           truncateText="…"
-                                                          text= {this.state.film.description}
+                                                          text={this.state.film.description}
                                                           textTruncateChild={
-                                                              <span id="s-c-2" >
+                                                              <span id="s-c-2">
                                                                   <Button variant="link" style={{display: 'block'}}
                                                                           className="p-0 m-0 mb-1 title font-weight-bold"
                                                                           onClick={this.handleTruncate}>Read more</Button></span>
@@ -480,21 +479,22 @@ class FilmComponent extends Component {
                                             </TextTruncate>
 
                                             {!truncated && expanded && (
-                                                <span style={{display: 'block'}} >
-                                                    <Button className="p-0 m-0 mb-1 title font-weight-bold" variant="link" onClick={this.toggleLines}>Show less</Button></span>
+                                                <span style={{display: 'block'}}>
+                                                    <Button className="p-0 m-0 mb-1 title font-weight-bold"
+                                                            variant="link" onClick={this.toggleLines}>Show less</Button></span>
                                             )}
                                         </Col>
                                     </Row>
                                 </Col>
                                 :
                                 this.state.isMounted ?
-                                <Col style={{height: 80}} sm={12}
-                                     className="pl-3 pr-3 mb-2 text-center justify-content-center d-flex align-items-center">
-                                    {
-                                    }
-                                </Col>
-                                :
-                                null
+                                    <Col style={{height: 80}} sm={12}
+                                         className="pl-3 pr-3 mb-2 text-center justify-content-center d-flex align-items-center">
+                                        {
+                                        }
+                                    </Col>
+                                    :
+                                    null
 
                         }
                         <Col sm={12} className="mt-4 mb-2 divider d-block d-md-none"/>
@@ -530,7 +530,7 @@ class FilmComponent extends Component {
 
 
                         {
-                            ((this.state.windowWidth <= windowBreakpoint && !this.state.hasMoreFilms)  || (this.state.windowWidth > windowBreakpoint))
+                            ((this.state.windowWidth <= windowBreakpoint && !this.state.hasMoreFilms) || (this.state.windowWidth > windowBreakpoint))
                             && this.state.isMounted &&
                             <Col className="p-0 ">
                                 <Col sm={12} className="mt-4 mb-2 divider"/>

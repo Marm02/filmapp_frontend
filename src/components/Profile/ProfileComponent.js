@@ -14,6 +14,7 @@ import {isMobile} from 'react-device-detect'
 import Snackbar from '@material-ui/core/Snackbar';
 import Button from '@material-ui/core/Button';
 import connect from "react-redux/es/connect/connect";
+import ButtonBase from "@material-ui/core/ButtonBase/ButtonBase";
 
 const pathName = config.pathName;
 
@@ -263,7 +264,7 @@ class ProfileComponent extends Component {
 
                                 </div>
 
-                                <Row className="m-0  mt-1">
+                                <Row className="m-0 mt-1">
                                     <Col xs={8} sm={8} className="p-0">
 
                                         <TextTruncate line={2} text={film.title}
@@ -272,11 +273,16 @@ class ProfileComponent extends Component {
 
                                     </Col>
 
-                                    <Col xs={1} sm={1} style={{height: 24 + 'px', position: 'absolute', right: 28}}
+
+                                    <Col  style={{height: 24 + 'px', width: 24 + "px" , position: 'absolute', right: 28}}
                                          className={"playlist-remove-holder p-0 d-flex text-center justify-content-center align-items-center"}
                                          onClick={() => this.handleRemoveFilm(film.id, index)}>
-                                        <FontAwesomeIcon
-                                            icon="trash-alt"/>
+                                        <ButtonBase  style={{borderRadius: 20 + "px", width: 30 + "px", height: 24 + "px"}} className="button-my" >
+                                            {
+                                                <FontAwesomeIcon
+                                                    icon="trash-alt"/>
+                                            }
+                                        </ButtonBase>
                                     </Col>
 
                                     <Col xs={1} sm={1} className="p-0" style={{position: 'absolute', right: 8}}>
@@ -339,17 +345,25 @@ class ProfileComponent extends Component {
 
 
                                 </div>
-                                <Row className="p-0 m-0">
+                                <Row className="p-0 m-0 mt-1">
                                     <Col className="p-0 m-0 ">
-                                        <p className="mb-1">
-                                            <small className="font-weight-bolder">{playlist.title}</small>
-                                        </p>
+
+                                            <TextTruncate line={2} text={playlist.title}
+                                                          id="s-c-2"
+                                                          className="mb-2 mt-1 title "/>
                                     </Col>
-                                    <Col xs={2} sm={2} className={
-                                        "playlist-remove-holder m-0 p-0 text-center justify-content-center d-flex align-items-center"}
-                                         onClick={() => this.handleRemovePlaylist(playlist.id, index)}>
-                                        <FontAwesomeIcon icon="trash-alt"/>
-                                    </Col>
+                                    <ButtonBase  style={{borderRadius: 20 + "px", width: 24 + "px", height: 24 + "px"}} className="button-my" >
+                                        {
+                                            <Col
+                                                style={{width: 30 + "px", height: 24 + "px"}}
+                                                className={
+                                                "playlist-remove-holder m-0 p-0 text-center justify-content-center d-flex align-items-center"}
+                                                 onClick={() => this.handleRemovePlaylist(playlist.id, index)}>
+
+                                                <FontAwesomeIcon icon="trash-alt"/>
+                                            </Col>
+                                        }
+                                    </ButtonBase>
                                 </Row>
 
                                 <p className="mb-0 author-nick">

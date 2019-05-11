@@ -187,3 +187,30 @@
     */
 }
 
+.add-item-opacity {
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.add-item-middle {
+    cursor: pointer;
+    opacity: 0.8;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+mark{
+    padding: 0 !important;
+    background-color: transparent !important;
+    color: black;
+    font-weight: 700;
+}
+
+#async_typeahead > li > a {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

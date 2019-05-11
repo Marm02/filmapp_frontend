@@ -35,7 +35,8 @@ import {
     faThumbsUp,
     faSortUp,
     faSortDown,
-    faTrashAlt
+    faTrashAlt,
+    faTimes
 } from '@fortawesome/free-solid-svg-icons'
 import {Switch} from "react-router";
 import {ResetPasswordComponent} from './components/ResetPassword/ResetPasswordComponent';
@@ -46,7 +47,7 @@ import {ProfileComponent} from './components/Profile/ProfileComponent';
 import {config} from './config';
 
 library.add(faSearch, faPlus, faThumbsUp, faThumbsDown, faEye, faPlay, faFilter, faCaretUp, faCaretDown, faEllipsisV,
-    faSortDown, faSortUp, faTrashAlt);
+    faSortDown, faSortUp, faTrashAlt, faTimes);
 
 const pathName = config.pathName;
 
