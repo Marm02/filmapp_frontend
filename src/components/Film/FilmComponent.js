@@ -35,7 +35,7 @@ class FilmComponent extends Component {
 
             isMounted: false,
 
-            isLoading: false,
+            isLoading: true,
 
             isLoadingFilms: false,
             isLoadingComments: false,
@@ -237,7 +237,8 @@ class FilmComponent extends Component {
             film: {
                 ...this.state.film,
                 filmID: this.props.match.params.id
-            }
+            },
+            isLoading: true
         }, () => {
 
             axios.get(`${config.apiUrl}films/${this.props.match.params.id}/desc/no`)
@@ -287,6 +288,7 @@ class FilmComponent extends Component {
                             videoSrc: `${config.apiUrl}films/${this.props.match.params.id}`,
                             commentsLength: film.commentsLength
                         },
+                        isLoading:false,
                         isMounted: true
                     });
 
@@ -448,17 +450,17 @@ class FilmComponent extends Component {
                                         </Col>
                                         <Col xs={4} sm={4} className="text-right">
 
-                                            <p className={`${loggedIn && rated === 'LIKED' ? "blue" : ""} font-weight-bold`}>
-                                                <FontAwesomeIcon cursor="pointer"
-                                                                 onClick={() => this.updateMeta('liked')}
-                                                                 icon="thumbs-up"/>
+                                            <p style={{cursor: "pointer"}}
+                                               onClick={() => this.updateMeta('liked')}
+                                               className={`${loggedIn && rated === 'LIKED' ? "blue" : ""} font-weight-bold no-copy`}>
+                                                <FontAwesomeIcon icon="thumbs-up"/>
                                                 &ensp;{this.state.film.likes}</p>
                                         </Col>
                                         <Col xs={4} sm={4}>
-                                            <p className={`${loggedIn && rated === 'DISLIKED' ? "blue" : ""} font-weight-bold`}>
-                                                <FontAwesomeIcon cursor="pointer"
-                                                                 onClick={() => this.updateMeta('disliked')}
-                                                                 icon="thumbs-down"/>
+                                            <p style={{cursor: "pointer"}}
+                                               onClick={() => this.updateMeta('disliked')}
+                                               className={`${loggedIn && rated === 'DISLIKED' ? "blue" : ""} font-weight-bold no-copy`}>
+                                                <FontAwesomeIcon icon="thumbs-down"/>
                                                 &ensp;{this.state.film.dislikes}</p>
                                         </Col>
                                         <Col sm={12} className="mt-4 mb-4 divider" />

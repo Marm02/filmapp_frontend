@@ -238,7 +238,7 @@ class ProfileComponent extends Component {
         const {scroll} = this.state;
 
         return (
-            <React.Fragment>
+            <Col>
 
 
                 <Row className="mt-5">
@@ -263,7 +263,7 @@ class ProfileComponent extends Component {
 
                                 </div>
 
-                                <Row className="m-0">
+                                <Row className="m-0  mt-1">
                                     <Col xs={8} sm={8} className="p-0">
 
                                         <TextTruncate line={2} text={film.title}
@@ -397,14 +397,14 @@ class ProfileComponent extends Component {
                         horizontal: 'left',
                     }}
                     open={this.state.openSnackbar}
-                    autoHideDuration={3000}
+                    autoHideDuration={1500}
                     onClose={this.handleClose}
                     ContentProps={{
                         'aria-describedby': 'message-id',
                     }}
                     message={<span id="message-id">{this.state.note}</span>}
                 />
-            </React.Fragment>
+            </Col>
 
         )
     }

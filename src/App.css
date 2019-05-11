@@ -164,3 +164,26 @@
     transform: translateX(-50%) !important;
 }
 
+.no-copy {
+    -webkit-user-select: none;  /* Chrome all / Safari all */
+    -moz-user-select: none;     /* Firefox all */
+    -ms-user-select: none;      /* IE 10+ */
+    user-select: none;          /* Likely future */
+}
+
+.bar {
+    background-color: #f8f8f8;
+    height: 60px;
+}
+.dropdown-bar {
+    height: 200px;
+    width: 400px;
+    margin: 0 auto 50px;
+    box-shadow:     0      10px      10px       #666;
+    /*              |        |         |
+                x-shift      |         |
+                          y-shift      |
+                                 size of shadow
+    */
+}
+

@@ -34,7 +34,7 @@ class PlaylistAddComponent extends Component {
         this.handleChange = this.handleChange.bind(this);
     }
 
-    handleChange(event, index, playlisID) {
+    handleChange(event, index, playlisID, playlistTitle) {
         let array = this.state.playlists;
         array[index].contains = !array[index].contains;
 
@@ -51,8 +51,7 @@ class PlaylistAddComponent extends Component {
         if (array[index].contains === false) {
             axios.put(`${config.apiUrl}playlists/${playlisID}/films/delete/`, body, requestParams)
                 .then(res => {
-                    const filmTitle = this.props.filmTitle ? this.props.filmTitle : '';
-                    message = `Deleted film ${filmTitle} from playlist!`;
+                    message = `Deleted from playlist ${playlistTitle}`;
                     if(this.state.playlistID && this.state.playlistID === playlisID)
                         this.props.dispatch(userActions.playlistFilm('DELETED'));
                     this.props.handlePlaylistOperation(message);
@@ -64,8 +63,7 @@ class PlaylistAddComponent extends Component {
         } else {
             axios.put(`${config.apiUrl}playlists/${playlisID}/films/`, body, requestParams)
                 .then(res => {
-                    const filmTitle = this.props.filmTitle ? this.props.filmTitle : '';
-                    message = `Added film ${filmTitle} to playlist!`;
+                    message = `Added to playlist ${playlistTitle}`;
                     if(this.state.playlistID && this.state.playlistID === playlisID)
                         this.props.dispatch(userActions.playlistFilm('ADDED'));
                     this.props.handlePlaylistOperation(message);
@@ -90,9 +88,7 @@ class PlaylistAddComponent extends Component {
 
         axios.post(`${config.apiUrl}playlists`, body, requestParams)
             .then(res => {
-                const filmTitle = this.props.filmTitle ? this.props.filmTitle : '';
-
-                let message = `Created playlist ${title} and added film ${filmTitle}!`;
+                let message = `Added to playlist ${title}`;
                 this.props.handlePlaylistOperation(message);
 
 
@@ -221,13 +217,13 @@ class PlaylistAddComponent extends Component {
 
         return (
 
-            <Dropdown ref={this.menuRef} drop={drop}>
+            <Dropdown ref={this.menuRef} drop={drop} >
                 {
                     this.state.loaded &&
                     <Dropdown.Menu
-                            className={alignCenter}
+                            className={`${alignCenter} dropdown-bar`}
                             alignRight={alignRight}
-                            style={{ height: contentHeight + "px", width: 240 + "px", overflowY: "scroll"}}
+                            style={{ height: contentHeight + "px", width: 240 + "px", overflowY: "scroll", cursor: 'context-menu'}}
                             show={this.state.show}>
                         {this.state.playlists.length > 0 &&
                         <p className="dropdown-item-my pl-4 pr-4">Save to...</p>}
@@ -235,11 +231,11 @@ class PlaylistAddComponent extends Component {
 
                         {
                             this.state.playlists.map((playlist, index) => {
-                                return (<Col xs={12} sm={12} key={playlist.id}>
-                                    <Row className="pl-4 pr-4">
-                                        <Col xs={12} sm={12} className="p-0 mb-2">
+                                return (<Col xs={12} sm={12} key={playlist.id} >
+                                    <Row className="pl-4 pr-4" >
+                                        <Col xs={12} sm={12} className="p-0 mb-2" >
                                             <Form.Check
-                                                onChange={(e) => this.handleChange(e, index, playlist.id)}
+                                                onChange={(e) => this.handleChange(e, index, playlist.id, playlist.title)}
                                                 custom
                                                 inline
                                                 checked={playlist.contains}

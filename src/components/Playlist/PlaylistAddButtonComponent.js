@@ -3,7 +3,8 @@ import {Col} from "react-bootstrap";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {PlaylistAddComponent} from './PlaylistAddComponent'
 import connect from "react-redux/es/connect/connect";
-
+import TouchRipple from '@material-ui/core/ButtonBase/TouchRipple';
+import ButtonBase from "@material-ui/core/ButtonBase/ButtonBase";
 
 class PlaylistAddButtonComponent extends Component {
 
@@ -37,17 +38,22 @@ class PlaylistAddButtonComponent extends Component {
 
             loggedIn ?
             <Col id="a-b-1" xs={size} sm={size}
-                 className="p-0 text-center justify-content-center d-flex playlist-add-home">
-                <Col id="a-b-2" xs={8} sm={8}
-                     className="playlist-add-icon-holder p-0 text-center"
-                     onClick={() => {
-                         this.props.handleAddPlaylistButtonClick(index)
-                     }}>
+                 className="p-0 text-center justify-content-center d-flex playlist-add-home ">
+                <ButtonBase  style={{borderRadius: 20 + "px", width: 24 + "px", height: 24 + "px"}} className="button-my" >
+                    {
+                        <Col id="a-b-2"
+                             style={{width: 30 + "px", height: 24 + "px"}}
+                             className="playlist-add-icon-holder p-0"
+                             onClick={() => {
+                                 this.props.handleAddPlaylistButtonClick(index)
+                             }}>
+                            <FontAwesomeIcon id="a-b-3" style={{opacity: (show ? 1 : "")}}
+                                             className="playlist-add-icon" icon="ellipsis-v">
 
-                    <FontAwesomeIcon id="a-b-3" style={{opacity: (show ? 1 : "")}}
-                                     className="playlist-add-icon" icon="ellipsis-v"/>
-                </Col>
-
+                            </FontAwesomeIcon>
+                        </Col>
+                    }
+                </ButtonBase>
                 {
                     show && <PlaylistAddComponent parentName={this.props.parentName}
                                                   filmID={this.props.filmID}

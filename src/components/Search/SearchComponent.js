@@ -101,7 +101,7 @@ class SearchComponent extends Component {
                     });
 
                     this.setState({
-                        hasMore: films.length < 1000,
+                        hasMore: (films.length > 0),
                         films: [...this.state.films, ...films],
                         isLoading: false
                     });
@@ -173,7 +173,7 @@ class SearchComponent extends Component {
                         });
 
                         this.setState({
-                            hasMore: films.length < 1000,
+                            hasMore: (films.length > 0),
                             films: [...this.state.films, ...films],
                             isLoading: false
                         });
@@ -282,7 +282,7 @@ class SearchComponent extends Component {
                 .then(res => {
                     const films = res.data;
                     this.setState({
-                        hasMore: films.length < 1000,
+                        hasMore: (films.length > 0),
                         films: [...this.state.films, ...films],
                         isLoading: false
                     });
@@ -626,7 +626,7 @@ class SearchComponent extends Component {
                         horizontal: 'left',
                     }}
                     open={this.state.openSnackbar}
-                    autoHideDuration={3000}
+                    autoHideDuration={1500}
                     onClose={this.handleCloseSnackbar}
                     ContentProps={{
                         'aria-describedby': 'message-id',

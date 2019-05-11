@@ -256,7 +256,7 @@ class PlaylistComponent extends Component {
                     <Row className="m-0 p-0">
                         <Col className="m-0 p-0" id="playlist_remove_header" xs={10} sm={10}>
                             <p className="mb-1">{this.state.playlist.title}</p>
-                            <small>Marcin</small>
+                            <small>{this.state.playlist.author_name}</small>
                             <small
                                 className="playlist-index">- {this.state.films.length > 0 ? this.state.index : 0}/{this.state.films.length}</small>
                         </Col>
@@ -391,7 +391,7 @@ class PlaylistComponent extends Component {
                         horizontal: 'left',
                     }}
                     open={this.state.openSnackbar}
-                    autoHideDuration={3000}
+                    autoHideDuration={1500}
                     onClose={this.handleCloseSnackbar}
                     ContentProps={{
                         'aria-describedby': 'message-id',

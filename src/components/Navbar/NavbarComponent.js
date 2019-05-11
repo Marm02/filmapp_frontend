@@ -164,8 +164,8 @@ class NavbarComponent extends Component {
                     </Form>
                 </Col>
 
-                <Col className="text-right d-md-none" xs={{span: 6, order: 7}} sm={{span: 2, order: 10}}>
-                    <Navbar.Toggle aria-controls="responsive-navbar-nav" onToggle={this.handleToggle}/>
+                <Col className="text-right d-md-none " xs={{span: 6, order: 7}} sm={{span: 2, order: 10}}>
+                    <Navbar.Toggle className="button-my" aria-controls="responsive-navbar-nav" onToggle={this.handleToggle}/>
                 </Col>
 
                 <Col xs={{span: 12, order: 12}} sm={{span: 12, order: 12}} md={{span: 3, order: 9}}>

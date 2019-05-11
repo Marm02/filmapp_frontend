@@ -226,7 +226,6 @@ class HomeComponent extends Component {
         const {isLoading} = this.state;
         const {scroll} = this.state;
         let films = this.state.films.map(a => Object.assign({}, a));
-        let numberOfLoadedImages = 0;
 
         return (
             <Col>
@@ -256,7 +255,7 @@ class HomeComponent extends Component {
 
                                 </div>
 
-                                <Row className="m-0">
+                                <Row className="m-0 mt-1">
                                     <Col xs={10} sm={10} className="p-0">
 
                                         <TextTruncate line={2} text={film.title}
@@ -321,7 +320,7 @@ class HomeComponent extends Component {
                         horizontal: 'left',
                     }}
                     open={this.state.openSnackbar}
-                    autoHideDuration={3000}
+                    autoHideDuration={1500}
                     onClose={this.handleClose}
                     ContentProps={{
                         'aria-describedby': 'message-id',
