@@ -210,7 +210,8 @@ mark{
 }
 
 #async_typeahead > li > a {
-    word-wrap: break-word
+    white-space: initial;
+
 }
 
 @media(max-width:586px){
