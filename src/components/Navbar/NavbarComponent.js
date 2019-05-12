@@ -16,7 +16,7 @@ import MenuItem from "@material-ui/core/MenuItem/MenuItem";
 
 import ico from '../../images/ico.png';
 
-import {AsyncTypeahead } from 'react-bootstrap-typeahead'; // ES2015
+import {AsyncTypeahead } from 'react-bootstrap-typeahead';
 
 const pathName = config.pathName;
 
@@ -31,13 +31,34 @@ class NavbarComponent extends Component {
             anchorEl: null,
             films: [],
             isLoading: false,
-            options: []
+            options: [],
+            selected: ''
         };
 
         this.handleSearchSubmit = this.handleSearchSubmit.bind(this);
 
     }
 
+    _handleKeyDown = (event) => {
+        if(event && event.target && event.target.className &&
+            event.target.className === "rbt-input-main form-control rbt-input  focus") {
+            switch (event.keyCode) {
+                case 13:
+                        this.handleSearchSubmit(event);
+                    break;
+                default:
+                    break;
+            }
+        }
+    };
+
+    componentDidMount(){
+        document.addEventListener("keydown", this._handleKeyDown);
+    }
+
+    componentWillUnmount() {
+        document.removeEventListener("keydown", this._handleKeyDown);
+    }
 
     handleSelect(eventKey) {
         if (eventKey === 'login') {
@@ -57,15 +78,13 @@ class NavbarComponent extends Component {
         e.preventDefault();
 
         const search = this.state.title;
-        console.log(search)
         this.setState({title: ''});
 
         document.getElementById("search-form").reset();
-
+        this.typeahead.getInstance().clear();
 
         axios.get(`${config.apiUrl}films/filter/title?search=${search}`)
             .then(result => {
-                console.log(result)
 
                 const films = result.data;
                 if (films.length === 0) {
@@ -159,20 +178,23 @@ class NavbarComponent extends Component {
                 </Col>
 
                 <Col xs={{span: 12, order: 12}} sm={{span: 8, order: 2}} md={{span: 5, order: 5}}>
-                    <Form id="search-form" onSubmit={this.handleSearchSubmit} inline>
+                    <Form id="search-form" inline>
+
 
                         <AsyncTypeahead
-                            minLength={1    }
+                            ref={(typeahead) => this.typeahead = typeahead}
+                            id="async_typeahead"
                             placeholder="Search"
+                            labelKey="title"
+                            minLength={1}
+                            className="search-bar"
                             onChange={(selected) => {
                                 const title = selected.length > 0 ? selected[0].title : '';
                                 this.setState({ title : title});
                             }}
-                            id="async_typeahead"
-                            labelKey="title"
                             isLoading={this.state.isLoading}
                             onSearch={query => {
-                                this.setState({isLoading: true, title: query});
+                               this.setState({isLoading: true, title: query});
                                 axios.get(`${config.apiUrl}films/titles?search=${query}`)
                                     .then(res => this.setState({
                                         options: res.data,
@@ -182,7 +204,6 @@ class NavbarComponent extends Component {
                             }}
                             options={this.state.options}
                         />
-
 
                         <Button onClick={this.handleSearchSubmit} className="d-none d-sm-inline ml-1"
                                 variant="light"><FontAwesomeIcon icon="search"/></Button>

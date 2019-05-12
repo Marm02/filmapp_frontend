@@ -214,3 +214,9 @@ mark{
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
+@media(max-width:586px){
+    .search-bar {
+        width: 100%;
+    }
+}
