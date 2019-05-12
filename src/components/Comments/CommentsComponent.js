@@ -27,7 +27,7 @@ class CommentsComponent extends Component {
 
             comment: '',
             dir: 1,
-
+//
             error: false,
             hasMore: true,
             isLoading: false,

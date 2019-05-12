@@ -139,7 +139,7 @@ class FilmsPreviewComponent extends Component {
         this.state = {
 
             filmID: '',
-
+//
             error: false,
             hasMore: true,
             isLoading: false,

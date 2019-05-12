@@ -38,7 +38,7 @@ class SearchComponent extends Component {
         this.state = {
             films: [],
             addOpenedIndex: -1,
-
+//
             click: false,
 
             error: false,
