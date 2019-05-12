@@ -170,6 +170,8 @@ class CommentsComponent extends Component {
                         isLoading: false,
                         isLoaded: true,
                         comments: [...this.state.comments, ...film.comments]
+                    }, () => {
+                        this.props.handleLoading(this.state);
                     });
 
                 })
@@ -177,6 +179,8 @@ class CommentsComponent extends Component {
                     this.setState({
                         error: err.message,
                         isLoading: false
+                    }, () => {
+                        this.props.handleLoading(this.state);
                     })
                 })
         })

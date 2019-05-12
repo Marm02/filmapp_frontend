@@ -90,7 +90,6 @@ class FilmComponent extends Component {
             this.setState({isLoadingFilms: true});
             if (window.innerWidth <= windowBreakpoint) {
                 if (!this.state.hasMoreFilms) {
-                    console.log(this.state.isLoadingComments)
                     this.setState({isLoadingComments: true});
                 }
             } else {
