@@ -42,7 +42,7 @@ class SearchComponent extends Component {
             click: false,
 
             error: false,
-            hasMore: false,
+            hasMore: true,
             isLoading: false,
             scroll: {},
             windowWidth: window.innerWidth,
@@ -140,7 +140,7 @@ class SearchComponent extends Component {
                 click: false,
 
                 error: false,
-                hasMore: false,
+                hasMore: true,
                 scroll: {},
                 windowWidth: window.innerWidth,
 

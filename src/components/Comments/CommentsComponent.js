@@ -343,10 +343,10 @@ class CommentsComponent extends Component {
                 }
 
                 {
-
+                    this.state.hasMore &&
                     <Col style={{height: 40}} sm={12} className="mb-2 text-center">
                         {
-                            (this.state.isLoading && this.state.hasMore) &&
+                            this.state.isLoading &&
                             <Spinner animation="border"/>
                         }
                     </Col>
