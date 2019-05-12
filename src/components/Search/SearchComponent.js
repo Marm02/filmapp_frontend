@@ -38,7 +38,7 @@ class SearchComponent extends Component {
         this.state = {
             films: [],
             addOpenedIndex: -1,
-//
+
             click: false,
 
             error: false,
@@ -611,7 +611,7 @@ class SearchComponent extends Component {
 
                 {
 
-
+                    this.state.hasMore &&
                     <Col style={{height: 40}} sm={12} className="text-center">
                         {!(scroll.scrollTop === 0 || scroll.offsetHeight <= scroll.innerHeight) &&
                         this.state.isLoading &&

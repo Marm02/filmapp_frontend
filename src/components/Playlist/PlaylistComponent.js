@@ -247,6 +247,7 @@ class PlaylistComponent extends Component {
         const {windowWidth} = this.props;
 
         const lines = windowWidth > 768 && windowWidth < 1024 ? 1 : 2;
+        const playlistHeightMultiplayer = windowWidth < 768 ? 2 : 1;
 
         return (
 
@@ -270,7 +271,7 @@ class PlaylistComponent extends Component {
                         }
                     </Row>
                 </Col>
-                <Col style={{height: this.state.playlistHeight - this.state.playlistHeaderHeight + 'px'}}
+                <Col style={{height: this.state.playlistHeight * playlistHeightMultiplayer - this.state.playlistHeaderHeight + 'px'}}
                      className="p-0 playlist-container" xs={12} sm={12}>
                     <PerfectScrollbar
                         onYReachEnd={() => {
