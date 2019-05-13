@@ -18,6 +18,7 @@ import {userActions} from "../../actions";
 import {authHeader} from "../../helpers";
 import Snackbar from "@material-ui/core/Snackbar/Snackbar";
 import TextTruncate from "react-text-truncate";
+import ButtonBase from "@material-ui/core/ButtonBase/ButtonBase";
 
 const pathName = config.pathName;
 
@@ -263,10 +264,15 @@ class PlaylistComponent extends Component {
                         </Col>
                         {
                             this.state.ownerOfPlaylist &&
-                            <Col id="playlist_remove" xs={2} sm={2} className={
-                                "m-0 p-0 text-center justify-content-center d-flex align-items-center"}
-                                 onClick={() => this.handleRemovePlaylist()}>
-                                <FontAwesomeIcon id="playlist_remove_film_icon" icon="trash-alt"/>
+                            <Col  style={{height: 24 + 'px', width: 24 + "px" , position: 'absolute', right: 28}}
+                                  className={"playlist-remove-holder p-0 d-flex text-center justify-content-center align-items-center"}
+                                  onClick={() => this.handleRemovePlaylist()}>
+                                <ButtonBase  style={{borderRadius: 20 + "px", width: 30 + "px", height: 24 + "px"}} className="button-my" >
+                                    {
+                                        <FontAwesomeIcon
+                                            icon="trash-alt"/>
+                                    }
+                                </ButtonBase>
                             </Col>
                         }
                     </Row>
