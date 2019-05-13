@@ -133,9 +133,12 @@ class PlaylistComponent extends Component {
         axios.put(`${config.apiUrl}playlists/${this.state.id}/films/delete/`, body, requestParams)
             .then(res => {
 
-                this.setState({openSnackbar: true, note: "Deleted from playlist!"});
+                let filmsTmp = this.state.films;
 
-                this.props.dispatch(userActions.playlistFilm('DELETED'));
+                filmsTmp.splice(index, 1);
+
+                this.setState({films: filmsTmp}, () => {
+                    this.setState({openSnackbar: true, note: "Deleted from playlist!"})});
 
             }).catch(err => {
             console.log(err);
@@ -339,7 +342,7 @@ class PlaylistComponent extends Component {
                                                             <ButtonBase
                                                                         style={{borderRadius: 20 + "px", width: 24 + "px", height: 24 + "px"}}
                                                                         className="button-my "
-                                                                        onClick={() => this.handleRemoveFromPlaylist(film.id)}>
+                                                                        onClick={() => this.handleRemoveFromPlaylist(index, film.id)}>
                                                                 {
                                                                     <FontAwesomeIcon  icon="trash-alt"/>
                                                                 }
@@ -397,7 +400,7 @@ class PlaylistComponent extends Component {
                                                             <ButtonBase
                                                                         style={{borderRadius: 20 + "px", width: 24 + "px", height: 24 + "px"}}
                                                                         className="button-my"
-                                                                        onClick={() => this.handleRemoveFromPlaylist(this.state.playlist.films[index])}>
+                                                                        onClick={() => this.handleRemoveFromPlaylist(index, this.state.playlist.films[index])}>
                                                                 {
                                                                     <FontAwesomeIcon  icon="trash-alt"/>
                                                                 }
