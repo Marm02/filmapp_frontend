@@ -8,6 +8,7 @@ import {config} from "../../config";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import Button from '@material-ui/core/Button';
 import connect from "react-redux/es/connect/connect";
+import TextTruncate from "react-text-truncate";
 
 const pathName = config.pathName;
 
@@ -188,7 +189,9 @@ class AllPlaylistsComponent extends Component {
                                         </Row>
                                     </div>
 
-                                    <p className="mb-1 font-weight-bolder">{playlist.title}</p>
+                                    <TextTruncate line={2} text={playlist.title}
+                                                  id="s-c-2"
+                                                  className="mb-1 mt-1 title "/>
 
                                     <p className="mb-0 author-nick">
                                         <small>{playlist.authorName}</small>

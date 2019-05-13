@@ -166,7 +166,7 @@ class PlaylistAddComponent extends Component {
 
         let contentHeight = 240;
 
-        if(this.menuRef && this.menuRef.current){
+      /*  if(this.menuRef && this.menuRef.current){
 
             let tmpHeightBottom = height - (this.menuRef.current.getBoundingClientRect().top  +
                 this.menuRef.current.getBoundingClientRect().height) ;
@@ -184,12 +184,12 @@ class PlaylistAddComponent extends Component {
 
             }
 
-        }
+        }*/
 
         let alignRight = false;
         let alignCenter = "";
 
-        if(parentName === "search"){
+       /* if(parentName === "search"){
             alignRight = true;
         }else if(parentName === "home" || parentName === "profile"){
             if (width >= 992) {
@@ -212,7 +212,7 @@ class PlaylistAddComponent extends Component {
                     alignCenter = "dropdown-center-playlist"
                 }
             }
-        }
+        }*/
 
 
         return (
