@@ -42,7 +42,8 @@ class NavbarComponent extends Component {
     _handleKeyDown = (event) => {
         if(event && event.target && event.target.className &&
             event.target.className === "rbt-input-main form-control rbt-input  focus") {
-            switch (event.keyCode) {
+            let keyCode = event.keyCode || event.which;
+            switch (keyCode) {
                 case 13:
                         this.handleSearchSubmit(event);
                     break;
@@ -182,6 +183,7 @@ class NavbarComponent extends Component {
 
 
                         <AsyncTypeahead
+                            type="search"
                             ref={(typeahead) => this.typeahead = typeahead}
                             id="async_typeahead"
                             placeholder="Search"
