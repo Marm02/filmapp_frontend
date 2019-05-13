@@ -162,18 +162,6 @@ class ProfileComponent extends Component {
         window.addEventListener('scroll', this.handleScroll);
         window.addEventListener('resize', this.handleResize);
 
-        const requestParams = {
-            headers: authHeader()
-        };
-
-        if (localStorage.getItem('user')) {
-
-          /*  axios.get(`${config.apiUrl}users/me`, requestParams)
-                .then().catch(err => {
-                this.props.dispatch(userActions.logout());
-            });*/
-        }
-
         this.setState({
             scroll: {
                 scrollTop: document.documentElement.scrollTop,

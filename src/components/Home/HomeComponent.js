@@ -7,8 +7,6 @@ import {config} from "../../config";
 
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import Button from '@material-ui/core/Button';
-import {userActions} from "../../actions";
-import {authHeader} from "../../helpers";
 import connect from "react-redux/es/connect/connect";
 import {PlaylistAddButtonComponent} from "../Playlist/PlaylistAddButtonComponent";
 import Snackbar from '@material-ui/core/Snackbar';
@@ -44,20 +42,6 @@ class HomeComponent extends Component {
 
         window.addEventListener('scroll', this.handleScroll);
         window.addEventListener('resize', this.handleResize);
-
-        const requestParams = {
-            headers: authHeader()
-        };
-
-        if (localStorage.getItem('user')) {
-
-
-          /*  axios.get(`${config.apiUrl}users/me`, requestParams)
-                .then(res => {
-                }).catch(err => {
-                    this.props.dispatch(userActions.logout());
-            });*/
-        }
 
         this.setState({
             scroll: {
@@ -305,7 +289,7 @@ class HomeComponent extends Component {
                 }
                 {
 
-
+                    this.state.hasMore &&
                     <Col style={{height: 40}} sm={12} className="text-center">
                         {!(scroll.scrollTop === 0 || scroll.offsetHeight <= scroll.innerHeight) &&
                         this.state.isLoading &&
