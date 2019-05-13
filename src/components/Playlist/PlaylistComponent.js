@@ -123,7 +123,7 @@ class PlaylistComponent extends Component {
         }
     };
 
-    handleRemoveFromPlaylist = (filmID) => {
+    handleRemoveFromPlaylist = (index, filmID) => {
         const requestParams = {
             headers: authHeader()
         };
