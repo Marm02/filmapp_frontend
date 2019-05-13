@@ -188,9 +188,7 @@ class AllPlaylistsComponent extends Component {
                                         </Row>
                                     </div>
 
-                                    <p className="mb-1">
-                                        <small className="font-weight-bolder">{playlist.title}</small>
-                                    </p>
+                                    <p className="mb-1 font-weight-bolder">{playlist.title}</p>
 
                                     <p className="mb-0 author-nick">
                                         <small>{playlist.authorName}</small>
