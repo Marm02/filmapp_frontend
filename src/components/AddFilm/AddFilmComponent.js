@@ -46,7 +46,6 @@ class AddFilmComponent extends Component {
     }
 
     handleChange(e) {
-        console.log(e.target);
         const {name, value} = e.target;
         this.setState({[name]: value});
     }
@@ -81,7 +80,8 @@ class AddFilmComponent extends Component {
 
                 })
                 .catch((error) => {
-                    if (error.response.data.error) {
+                    console.log(error);
+                    if (error.response && error.response.data && error.response.data.error) {
                         this.setState({
                             isLoading: false,
                             alert: {type: "alert-danger", message: error.response.data.error}
@@ -97,7 +97,7 @@ class AddFilmComponent extends Component {
                                 thumbnailPreview: null,
                             })
                         }
-                    } else if (error.response.data.errors) {
+                    } else if (error.response && error.response.data && error.response.data.errors) {
                         if (error.response.data.errors.description)
                             this.setState({
                                 isLoading: false,
