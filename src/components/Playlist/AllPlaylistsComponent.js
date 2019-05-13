@@ -189,10 +189,11 @@ class AllPlaylistsComponent extends Component {
                                         </Row>
                                     </div>
 
-                                    <TextTruncate line={2} text={playlist.title}
-                                                  id="s-c-2"
-                                                  className="mb-1 mt-1 title "/>
-
+                                    <Col xs={12} sm={12} className="p-0">
+                                        <TextTruncate line={2} text={playlist.title}
+                                                      id="s-c-2"
+                                                      className="mb-1 mt-1 title "/>
+                                    </Col>
                                     <p className="mb-0 author-nick">
                                         <small>{playlist.authorName}</small>
                                     </p>
