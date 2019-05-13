@@ -25,6 +25,7 @@ class AllPlaylistsComponent extends Component {
             error: false,
             hasMore: true,
             isLoading: true,
+            isMounted: false,
 
             scroll: {},
             windowWidth: window.innerWidth,
@@ -68,7 +69,8 @@ class AllPlaylistsComponent extends Component {
                     this.setState({
                         hasMore: playlists.length >= Math.ceil(6 * limit),
                         playlists: playlists,
-                        isLoading: false
+                        isLoading: false,
+                        isMounted: true
                     });
                 });
         });
@@ -209,7 +211,7 @@ class AllPlaylistsComponent extends Component {
 
                 </Row>
                 {
-                    ((scroll.scrollTop === 0 || scroll.offsetHeight <= scroll.innerHeight) && this.state.hasMore) &&
+                    ((scroll.scrollTop === 0 || scroll.offsetHeight <= scroll.innerHeight) && this.state.hasMore && this.state.isMounted) &&
                     <Col sm={12} className="text-center">
                         <Button
                             className="button-my"
@@ -227,7 +229,7 @@ class AllPlaylistsComponent extends Component {
 
                     this.state.hasMore &&
                     <Col style={{height: 40}} sm={12} className="text-center">
-                        {!(scroll.scrollTop === 0 || scroll.offsetHeight <= scroll.innerHeight) &&
+                        {!(scroll.scrollTop === 0 || scroll.offsetHeight <= scroll.innerHeight || !this.state.isMounted) &&
                         this.state.isLoading &&
                         <Spinner animation="border"/>
                         }
