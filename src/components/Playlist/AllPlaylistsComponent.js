@@ -23,8 +23,8 @@ class AllPlaylistsComponent extends Component {
 
 
             error: false,
-            hasMore: false,
-            isLoading: false,
+            hasMore: true,
+            isLoading: true,
 
             scroll: {},
             windowWidth: window.innerWidth,
