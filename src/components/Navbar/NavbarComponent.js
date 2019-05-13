@@ -17,6 +17,7 @@ import MenuItem from "@material-ui/core/MenuItem/MenuItem";
 import ico from '../../images/ico.png';
 
 import {AsyncTypeahead } from 'react-bootstrap-typeahead';
+import {isMobile} from "react-device-detect";
 
 const pathName = config.pathName;
 
@@ -42,9 +43,14 @@ class NavbarComponent extends Component {
     _handleKeyDown = (event) => {
         if(event && event.target && event.target.className &&
             event.target.className === "rbt-input-main form-control rbt-input  focus") {
-            let keyCode = event.keyCode || event.which;
+            let keyCode = event.keyCode || event.charCode;
+
             switch (keyCode) {
                 case 13:
+                        this.handleSearchSubmit(event);
+                    break;
+                case 9:
+                    if(isMobile)
                         this.handleSearchSubmit(event);
                     break;
                 default:
