@@ -264,16 +264,16 @@ class PlaylistComponent extends Component {
                         </Col>
                         {
                             this.state.ownerOfPlaylist &&
-                                <Col  xs={2} sm={2} style={{height: 24 + 'px', width: 24 + "px" }}
-                                      className={"m-0 playlist-remove-holder p-0 d-flex text-center justify-content-center align-items-center"}
-                                      onClick={() => this.handleRemovePlaylist()}>
-                                    <ButtonBase  style={{borderRadius: 20 + "px", width: 30 + "px", height: 24 + "px"}} className="button-my" >
-                                        {
-                                            <FontAwesomeIcon
-                                                icon="trash-alt"/>
-                                        }
-                                    </ButtonBase>
-                                </Col>
+                            <Col style={{height: 24 + 'px', width: 24 + "px"}}
+                                id="playlist_remove" xs={2} sm={2} className={
+                                "m-0 p-0 text-center justify-content-center d-flex align-items-center"}
+                                 onClick={() => this.handleRemovePlaylist()}>
+                                <ButtonBase  style={{borderRadius: 20 + "px", width: 30 + "px", height: 24 + "px"}} className="button-my" >
+                                    {
+                                        <FontAwesomeIcon id="playlist_remove_film_icon" icon="trash-alt"/>
+                                    }
+                                </ButtonBase>
+                            </Col>
                         }
                     </Row>
                 </Col>
