@@ -274,7 +274,6 @@ class PlaylistComponent extends Component {
                                         }
                                     </ButtonBase>
                                 </Col>
-                            </Col>
                         }
                     </Row>
                 </Col>
