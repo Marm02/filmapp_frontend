@@ -137,10 +137,7 @@
         color: #606060;
     }
 
-    .playlist-remove-holder:hover {
-        opacity: 1;
-        cursor: pointer;
-    }
+
 
     .playlist-remove-container:hover .playlist-remove-holder  {
         opacity: 0.6;
@@ -148,11 +145,17 @@
 
     .playlist-remove-container:hover .playlist-remove-holder:hover  {
         opacity: 1;
+        cursor: pointer;
     }
 
 }
 
 @media (hover: none) {
+    .playlist-remove-holder {
+        opacity: 0.8;
+        color: #606060;
+    }
+
     .playlist-add-icon {
         opacity: 0.7;
 

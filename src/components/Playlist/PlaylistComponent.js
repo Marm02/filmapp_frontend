@@ -254,9 +254,9 @@ class PlaylistComponent extends Component {
 
             (this.state.isPlaylistLoaded) &&
             <Col className="p-0  mt-4 mb-5">
-                <Col className="pt-2 pb-2 playlist-header" sm={12} ref={this.playlistHeader}>
+                <Col  className="playlist-remove-container pt-2 pb-2 playlist-header" sm={12} ref={this.playlistHeader}>
                     <Row className="m-0 p-0">
-                        <Col className="m-0 p-0" id="playlist_remove_header" xs={10} sm={10}>
+                        <Col className="m-0 p-0" xs={10} sm={10}>
                             <p className="mb-1">{this.state.playlist.title}</p>
                             <small>{this.state.playlist.author_name}</small>
                             <small
@@ -264,15 +264,16 @@ class PlaylistComponent extends Component {
                         </Col>
                         {
                             this.state.ownerOfPlaylist &&
-                            <Col style={{height: 24 + 'px', width: 24 + "px"}}
+                            <Col
+                                 style={{height: 24 + 'px', width: 24 + "px"}}
                                  xs={2} sm={2} className={
-                                "m-0 p-0 my-center"}
+                                "playlist-remove-holder m-0 p-0 text-center justify-content-center d-flex align-items-center center-vertically my-center-vertically"}
                                  onClick={() => this.handleRemovePlaylist()}>
-                                <ButtonBase id="playlist_remove"
-                                            style={{borderRadius: 20 + "px", width: 30 + "px", height: 24 + "px"}}
+                                <ButtonBase
+                                            style={{borderRadius: 20 + "px", width: 24 + "px", height: 24 + "px"}}
                                             className="button-my" >
                                     {
-                                        <FontAwesomeIcon id="playlist_remove_film_icon" icon="trash-alt"/>
+                                        <FontAwesomeIcon  icon="trash-alt"/>
                                     }
                                 </ButtonBase>
                             </Col>
@@ -330,11 +331,20 @@ class PlaylistComponent extends Component {
                                                     this.state.ownerOfPlaylist &&
                                                     <Col xs={2} sm={2}
                                                          className={index === this.state.films.length - 1 ?
-                                                             "playlist-remove-holder mt-3 mb-3 text-center justify-content-center d-flex align-items-center" :
-                                                             "playlist-remove-holder mt-3 text-center justify-content-center d-flex align-items-center"}>
-                                                        <FontAwesomeIcon
-                                                            onClick={() => this.handleRemoveFromPlaylist(film.id)}
-                                                            icon="trash-alt"/>
+                                                             "mt-3 mb-3 text-center justify-content-center d-flex align-items-center" :
+                                                             "mt-3 text-center justify-content-center d-flex align-items-center"}>
+                                                        <Col
+                                                            className="playlist-remove-holder p-0 m-0"
+                                                            style={{height: 24 + 'px', width: 24 + "px"}}>
+                                                            <ButtonBase
+                                                                        style={{borderRadius: 20 + "px", width: 24 + "px", height: 24 + "px"}}
+                                                                        className="button-my "
+                                                                        onClick={() => this.handleRemoveFromPlaylist(film.id)}>
+                                                                {
+                                                                    <FontAwesomeIcon  icon="trash-alt"/>
+                                                                }
+                                                            </ButtonBase>
+                                                        </Col>
                                                     </Col>
                                                 }
 
@@ -378,12 +388,23 @@ class PlaylistComponent extends Component {
                                                     this.state.ownerOfPlaylist &&
                                                     <Col xs={2} sm={2}
                                                          className={index === this.state.films.length - 1 ?
-                                                             "playlist-remove-holder mt-3 mb-3 text-center justify-content-center d-flex align-items-center" :
-                                                             "playlist-remove-holder mt-3 text-center justify-content-center d-flex align-items-center"}>
-                                                        <FontAwesomeIcon
-                                                            onClick={() => this.handleRemoveFromPlaylist(this.state.playlist.films[index])}
-                                                            icon="trash-alt"/>
+                                                             "mt-3 mb-3 text-center justify-content-center d-flex align-items-center" :
+                                                             "mt-3 text-center justify-content-center d-flex align-items-center"}>
+
+                                                        <Col
+                                                            className="playlist-remove-holder p-0 m-0"
+                                                            style={{height: 24 + 'px', width: 24 + "px"}}>
+                                                            <ButtonBase
+                                                                        style={{borderRadius: 20 + "px", width: 24 + "px", height: 24 + "px"}}
+                                                                        className="button-my"
+                                                                        onClick={() => this.handleRemoveFromPlaylist(this.state.playlist.films[index])}>
+                                                                {
+                                                                    <FontAwesomeIcon  icon="trash-alt"/>
+                                                                }
+                                                            </ButtonBase>
+                                                        </Col>
                                                     </Col>
+
                                                 }
 
                                             </Row>)

@@ -70,6 +70,7 @@ class AllPlaylistsComponent extends Component {
                         hasMore: playlists.length >= Math.ceil(6 * limit),
                         playlists: playlists,
                         isLoading: false,
+                        isMounted: true
                     });
                 });
         });
