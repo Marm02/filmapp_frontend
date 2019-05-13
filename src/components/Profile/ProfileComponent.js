@@ -168,10 +168,10 @@ class ProfileComponent extends Component {
 
         if (localStorage.getItem('user')) {
 
-            axios.get(`${config.apiUrl}users/me`, requestParams)
+          /*  axios.get(`${config.apiUrl}users/me`, requestParams)
                 .then().catch(err => {
                 this.props.dispatch(userActions.logout());
-            });
+            });*/
         }
 
         this.setState({

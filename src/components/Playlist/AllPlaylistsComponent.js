@@ -45,11 +45,11 @@ class AllPlaylistsComponent extends Component {
 
         if (localStorage.getItem('user')) {
 
-            axios.get(`${config.apiUrl}users/me`, requestParams)
+         /*   axios.get(`${config.apiUrl}users/me`, requestParams)
                 .then(res => {
                 }).catch(err => {
                 this.props.dispatch(userActions.logout());
-            });
+            });*/
         }
 
         this.setState({
