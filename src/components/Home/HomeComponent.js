@@ -118,7 +118,7 @@ class HomeComponent extends Component {
 
         if (error || isLoading || !hasMore) return;
 
-        if ((window.innerHeight + document.documentElement.scrollTop) >= (document.body.offsetHeight - 150)) {
+        if ((window.innerHeight + document.documentElement.scrollTop) >= (document.body.offsetHeight - 400)) {
             loadData();
         }
     };

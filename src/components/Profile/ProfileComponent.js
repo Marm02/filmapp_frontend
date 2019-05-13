@@ -6,7 +6,6 @@ import {Col, Row, Spinner} from 'react-bootstrap';
 import {config} from "../../config";
 
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {userActions} from "../../actions";
 import {authHeader} from "../../helpers";
 import {PlaylistAddButtonComponent} from "../Playlist/PlaylistAddButtonComponent";
 import TextTruncate from "react-text-truncate";
