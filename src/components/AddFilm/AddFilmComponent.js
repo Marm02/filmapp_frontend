@@ -81,6 +81,7 @@ class AddFilmComponent extends Component {
                 })
                 .catch((error) => {
                     console.log(error);
+                    console.log(JSON.stringify(error));
                     if (error.response && error.response.data && error.response.data.error) {
                         this.setState({
                             isLoading: false,
