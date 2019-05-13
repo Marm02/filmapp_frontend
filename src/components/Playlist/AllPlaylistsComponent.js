@@ -229,7 +229,8 @@ class AllPlaylistsComponent extends Component {
 
                     this.state.hasMore &&
                     <Col style={{height: 40}} sm={12} className="text-center">
-                        {!(scroll.scrollTop === 0 || scroll.offsetHeight <= scroll.innerHeight || !this.state.isMounted) &&
+                        {
+                            (!(scroll.scrollTop === 0 || scroll.offsetHeight <= scroll.innerHeight) || !this.state.isMounted) &&
                         this.state.isLoading &&
                         <Spinner animation="border"/>
                         }
