@@ -153,8 +153,9 @@ class FilmComponent extends Component {
                                 film: { ...this.state.film,
                                     'dislikes': data.data.thumbsDown,
                                     'likes': data.data.thumbsUp,
-                                    rate: meta.toString().toUpperCase()
-                                }
+                                },
+                                rate: rate
+
                             });
                     })
                     .catch(err => {});
