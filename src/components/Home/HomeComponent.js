@@ -26,8 +26,9 @@ class HomeComponent extends Component {
             addOpenedIndex: -1,
 
             error: false,
-            hasMore: false,
-            isLoading: false,
+            hasMore: true,
+            isLoading: true,
+            isMounted: false,
 
             scroll: {},
             windowWidth: window.innerWidth,
@@ -70,13 +71,14 @@ class HomeComponent extends Component {
 
                     films.forEach(film => {
                         film.add = false;
-                        film.img = `${config.apiUrl}films/${film.id}/thumbnail/${film.thumbnail._id}?width=small`
+                        film.img = `${config.apiUrl}films/${film.id}/thumbnail/${film.thumbnail._id}?width=preview`
 
                     });
                     this.setState({
                         hasMore: films.length >= Math.ceil(6 * limit),
                         films: films,
-                        isLoading: false
+                        isLoading: false,
+                        isMounted: true
                     });
                 });
         });
@@ -180,7 +182,7 @@ class HomeComponent extends Component {
 
                     films.forEach(film => {
                         film.add = false;
-                        film.img = `${config.apiUrl}films/${film.id}/thumbnail/${film.thumbnail._id}?width=small`
+                        film.img = `${config.apiUrl}films/${film.id}/thumbnail/${film.thumbnail._id}?width=preview`
                     });
 
                     this.setState({
@@ -211,6 +213,8 @@ class HomeComponent extends Component {
         const {scroll} = this.state;
         let films = this.state.films.map(a => Object.assign({}, a));
 
+        let filmsLoaded = 0;
+
         return (
             <Col>
 
@@ -228,7 +232,16 @@ class HomeComponent extends Component {
                                 <div className="embed-responsive embed-responsive-16by9 z-depth-1-half container">
                                     {
                                         <img
-
+                                            onLoad={ () => {
+                                                if (film.img === `${config.apiUrl}films/${film.id}/thumbnail/${film.thumbnail._id}?width=preview`) {
+                                                    film.img = `${config.apiUrl}films/${film.id}/thumbnail/${film.thumbnail._id}?width=small`;
+                                                    filmsLoaded++;
+                                                    if(filmsLoaded >= films.length){
+                                                        this.setState({films: films});
+                                                    }
+                                                }
+                                            }
+                                            }
                                             alt=""
                                             className="embed-responsive-item image"
                                             src={film.img}
@@ -273,7 +286,7 @@ class HomeComponent extends Component {
 
                 </Row>
                 {
-                    ((scroll.scrollTop === 0 || scroll.offsetHeight <= scroll.innerHeight) && this.state.hasMore) &&
+                    ((scroll.scrollTop === 0 || scroll.offsetHeight <= scroll.innerHeight) && this.state.hasMore && this.state.isMounted) &&
                     <Col sm={12} className="text-center">
                         <Button
                             className="button-my"
@@ -291,7 +304,7 @@ class HomeComponent extends Component {
 
                     this.state.hasMore &&
                     <Col style={{height: 40}} sm={12} className="text-center">
-                        {!(scroll.scrollTop === 0 || scroll.offsetHeight <= scroll.innerHeight) &&
+                        {(!(scroll.scrollTop === 0 || scroll.offsetHeight <= scroll.innerHeight) || !this.state.isMounted) &&
                         this.state.isLoading &&
                         <Spinner animation="border"/>
                         }
