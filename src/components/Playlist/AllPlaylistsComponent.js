@@ -189,6 +189,7 @@ class AllPlaylistsComponent extends Component {
                                                     if (playlist.img === `${config.apiUrl}films/${playlist.filmID}/thumbnail/${playlist.thumbnail}?width=preview`) {
                                                         playlist.img = `${config.apiUrl}films/${playlist.filmID}/thumbnail/${playlist.thumbnail}?width=small`;
                                                         playlistsLoaded++;
+                                                        console.log(playlistsLoaded)
                                                         if(this.state.playlistsPreviewLoaded + playlistsLoaded >= playlists.length){
                                                             this.setState({
                                                                 playlistsPreviewLoaded: (this.state.playlistsPreviewLoaded + playlistsLoaded),
