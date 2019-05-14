@@ -238,6 +238,8 @@ class HomeComponent extends Component {
                                                 if (film.img === `${config.apiUrl}films/${film.id}/thumbnail/${film.thumbnail._id}?width=preview`) {
                                                     film.img = `${config.apiUrl}films/${film.id}/thumbnail/${film.thumbnail._id}?width=small`;
                                                     filmsLoaded++;
+                                                    console.log(filmsLoaded)
+                                                    console.log(this.state.filmsPreviewLoaded)
                                                     if(this.state.filmsPreviewLoaded + filmsLoaded >= films.length){
                                                         this.setState({
                                                             filmsPreviewLoaded: (this.state.filmsPreviewLoaded + filmsLoaded),
