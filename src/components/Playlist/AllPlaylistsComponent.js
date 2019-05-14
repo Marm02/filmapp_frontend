@@ -26,6 +26,7 @@ class AllPlaylistsComponent extends Component {
             hasMore: true,
             isLoading: true,
             isMounted: false,
+            playlistsPreviewLoaded: 0,
 
             scroll: {},
             windowWidth: window.innerWidth,
@@ -65,6 +66,9 @@ class AllPlaylistsComponent extends Component {
 
                     let playlists = response.data;
 
+                    playlists.forEach(playlist => {
+                        playlist.img = `${config.apiUrl}films/${playlist.filmID}/thumbnail/${playlist.thumbnail}?width=preview`
+                    });
 
                     this.setState({
                         hasMore: playlists.length >= Math.ceil(6 * limit),
@@ -123,6 +127,10 @@ class AllPlaylistsComponent extends Component {
 
                     let playlists = response.data;
 
+                    playlists.forEach(playlist => {
+                        playlist.img = `${config.apiUrl}films/${playlist.filmID}/thumbnail/${playlist.thumbnail}?width=preview`
+                    });
+
                     this.setState({
                         hasMore: (playlists.length === 6),
                         isLoading: false,
@@ -148,10 +156,11 @@ class AllPlaylistsComponent extends Component {
         });
     };
 
-
     render() {
         const {isLoading} = this.state;
         const {scroll} = this.state;
+        let playlistsLoaded = 0;
+        let playlists = this.state.playlists.map(a => Object.assign({}, a));
 
         return (
             <Col>
@@ -160,7 +169,7 @@ class AllPlaylistsComponent extends Component {
                 <Row className="mt-5">
 
                     {
-                        this.state.playlists.map((playlist, index) => {
+                        playlists.map((playlist, index) => {
 
 
                                 const filmID = playlist.filmID;
@@ -176,9 +185,20 @@ class AllPlaylistsComponent extends Component {
                                          className="embed-responsive embed-responsive-16by9 z-depth-1-half container">
                                         {
                                             <img
+                                                onLoad={ () => {
+                                                    if (playlist.img === `${config.apiUrl}films/${playlist.filmID}/thumbnail/${playlist.thumbnail}?width=preview`) {
+                                                        playlist.img = `${config.apiUrl}films/${playlist.filmID}/thumbnail/${playlist.thumbnail}?width=small`;
+                                                        playlistsLoaded++;
+                                                        if(this.state.playlistsPreviewLoaded + playlistsLoaded >= playlists.length){
+                                                            this.setState({
+                                                                playlistsPreviewLoaded: (this.state.playlistsPreviewLoaded + playlistsLoaded),
+                                                                playlists: playlists});
+                                                        }
+                                                    }
+                                                }}
                                                 alt=""
                                                 className="embed-responsive-item image"
-                                                src={`${config.apiUrl}films/${filmID}/thumbnail/${playlist.thumbnail}?width=small`}
+                                                src={playlist.img}
                                                 onClick={() => this.setRedirect(playlistID, filmID)}/>
                                         }
                                         <Row className="middle">

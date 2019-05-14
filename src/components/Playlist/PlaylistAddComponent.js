@@ -131,7 +131,6 @@ class PlaylistAddComponent extends Component {
                     let playlists = response.data;
 
                     playlists.forEach(playlist => {
-                        console.log(playlist);
                         if (playlist.films.indexOf(this.props.filmID) > -1) {
                             playlist.contains = true;
                         } else {
