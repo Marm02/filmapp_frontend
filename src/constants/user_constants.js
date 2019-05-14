@@ -10,8 +10,6 @@ export const userConstants = {
 
     LOGOUT: 'USER_LOGOUT',
 
-    RATED: 'FILM_RATED',
-
     PLAYLIST_FILM_ACTION: 'USER_PLAYLIST_FILM_ACTION'
 
 };

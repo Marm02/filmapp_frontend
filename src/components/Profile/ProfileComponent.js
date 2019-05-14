@@ -144,7 +144,9 @@ class ProfileComponent extends Component {
             addOpenedIndex: -1,
 
             error: false,
-            isLoading: false,
+
+            isLoading: true,
+            isLoaded: false,
 
             scroll: {},
 
@@ -219,6 +221,12 @@ class ProfileComponent extends Component {
     componentWillUnmount() {
         window.removeEventListener('scroll', this.handleScroll);
         window.removeEventListener('resize', this.handleResize);
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if(prevProps.loggedIn !== this.props.loggedIn && !this.props.loggedIn){
+            this.props.history.push(`${pathName}`)
+        }
     }
 
     render() {
@@ -366,7 +374,7 @@ class ProfileComponent extends Component {
                 </Row>
 
                 {
-                    ((scroll.scrollTop === 0 || scroll.offsetHeight <= scroll.innerHeight) && this.state.hasMore) &&
+                    ((scroll.scrollTop === 0 || scroll.offsetHeight <= scroll.innerHeight) && this.state.hasMore && this.state.isLoaded) &&
                     <Col sm={12} className="text-center">
                         <Button
                             className="button-my"
@@ -385,7 +393,7 @@ class ProfileComponent extends Component {
 
 
                     <Col style={{height: 40}} sm={12} className="text-center">
-                        {!(scroll.scrollTop === 0 || scroll.offsetHeight <= scroll.innerHeight) &&
+                        {(!(scroll.scrollTop === 0 || scroll.offsetHeight <= scroll.innerHeight) || !this.state.isLoaded) &&
                         this.state.isLoading &&
                         <Spinner animation="border"/>
                         }

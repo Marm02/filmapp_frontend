@@ -441,12 +441,10 @@ class PlaylistComponent extends Component {
 
 function mapStateToProps(state) {
     const {loggedIn} = state.auth;
-    const {rated} = state.rate;
     const {playlistFilm} = state.playlistFilm;
 
     return {
         loggedIn,
-        rated,
         playlistFilm
     };
 }

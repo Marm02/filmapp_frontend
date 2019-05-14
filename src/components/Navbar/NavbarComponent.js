@@ -135,7 +135,6 @@ class NavbarComponent extends Component {
     handleLogoutClick = () => {
         this.setState({ anchorEl: null });
 
-        this.props.dispatch(userActions.rate(''));
         this.props.dispatch(userActions.logout());
     };
 

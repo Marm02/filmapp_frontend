@@ -18,7 +18,7 @@ import {Route, Router} from 'react-router-dom';
 
 
 import {history} from './helpers';
-import {alertActions, userActions} from './actions';
+import {alertActions} from './actions';
 import {connect} from 'react-redux';
 //  --------- icons ------------
 import {library} from '@fortawesome/fontawesome-svg-core'
@@ -58,7 +58,6 @@ class App extends Component {
         const {dispatch} = this.props;
 
         history.listen((location, action) => {
-            dispatch(userActions.rate('CHECK_RATE'));
             dispatch(alertActions.clear());
         });
     }

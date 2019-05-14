@@ -362,11 +362,9 @@ class CommentsComponent extends Component {
 
 function mapStateToProps(state) {
     const {loggedIn} = state.auth;
-    const {rated} = state.rate;
 
     return {
         loggedIn,
-        rated,
     };
 }
 

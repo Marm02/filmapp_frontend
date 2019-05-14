@@ -7,7 +7,6 @@ export const userActions = {
     login,
     logout,
     register,
-    rate,
     playlistFilm
 };
 
@@ -18,7 +17,6 @@ function login(username, password) {
         userService.login(username, password)
             .then(user => {
                 dispatch(success(user));
-                dispatch(userActions.rate('CHECK_RATE'));
                 history.goBack();
             },
             error =>{
@@ -63,17 +61,6 @@ function register(user) {
 
 }
 
-
-function rate(meta) {
-
-    return dispatch => {
-        dispatch(request(meta));
-
-    };
-
-    function request(meta) { return { type: userConstants.RATED, meta } }
-
-}
 
 function playlistFilm(action) {
 

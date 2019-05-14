@@ -10,7 +10,6 @@ import './FilmComponent.css';
 import {authHeader} from "../../helpers";
 import {config} from "../../config";
 import {connect} from "react-redux";
-import {userActions} from "../../actions"
 
 import "../../../node_modules/video-react/dist/video-react.css";
 import {FilmsPreviewComponent} from "./FilmsPreviewComponent";
@@ -51,7 +50,9 @@ class FilmComponent extends Component {
             error: false,
 
             expanded: false,
-            truncated: false
+            truncated: false,
+
+            rate: ''
         };
 
         this.handleTruncate = this.handleTruncate.bind(this);
@@ -136,52 +137,51 @@ class FilmComponent extends Component {
 
         const requestOptions = {headers: authHeader()};
 
-        return axios.put(`${config.apiUrl}users/update/meta`, {[meta]: this.state.film.filmID},
+        const rate = meta.toString().toUpperCase();
+        const isLiked = rate === 'LIKED' ? 1 : -1;
+
+
+        if(this.state.rate !== rate ) {
+            if(this.state.rate === ''){
+                this.setState({
+                    film: {
+                        ...this.state.film,
+                        'dislikes': this.state.film.dislikes + (rate === 'DISLIKED' ? 1 : 0) ,
+                        'likes': this.state.film.likes + (rate === 'LIKED' ? 1 : 0)
+                    }
+                });
+                this.setState({rate: meta.toString().toUpperCase()});
+            }else{
+                this.setState({
+                    film: {
+                        ...this.state.film,
+                        'dislikes': this.state.film.dislikes - isLiked ,
+                        'likes': this.state.film.likes + isLiked
+                    }
+                });
+                this.setState({rate: meta.toString().toUpperCase()});
+            }
+
+
+
+            return axios.put(`${config.apiUrl}users/update/meta`, {[meta]: this.state.film.filmID},
             requestOptions)
             .then(data => {
+                console.log(meta);
 
                 const value = data.data;
                 return axios.put(`${config.apiUrl}films/${this.state.film.filmID}/meta`, value,
                     options)
-                    .then(data => {
-
-                        this.props.dispatch(userActions.rate(meta.toString().toUpperCase()));
-
-                        this.setState({
-                            film: {
-                                ...this.state.film,
-                                'dislikes': data.data.thumbsDown,
-                                'likes': data.data.thumbsUp
-                            }
-                        });
-                    }).catch(err => {
-                    });
+                    .then(data => {})
+                    .catch(err => {});
 
             }).catch(err => {
                 console.log(err);
             });
-    };
-
-    checkRate = () => {
-
-        if (this.props.rated === 'CHECK_RATE') {
-
-            let user = JSON.parse(localStorage.getItem('user'));
-
-            if (!user)
-                return;
-
-            if (user.user.meta.liked.indexOf(this.state.film.filmID) > -1) {
-                this.props.dispatch(userActions.rate('LIKED'));
-            }
-
-            if (user.user.meta.disliked.indexOf(this.state.film.filmID) > -1) {
-                this.props.dispatch(userActions.rate('DISLIKED'));
-            }
 
         }
-
     };
+
 
     handleSetThumbnail = (filmID) => {
         this.setState({
@@ -191,7 +191,6 @@ class FilmComponent extends Component {
             }
         }, () => {
             this.props.history.push(`${pathName}film/` + filmID);
-            this.props.dispatch(userActions.rate('CHECK_RATE'));
             window.scrollTo(0, 0);
 
         })
@@ -204,8 +203,6 @@ class FilmComponent extends Component {
                     ...this.state.film,
                     poster: "https://thumbs.gfycat.com/VibrantHeavyFrogmouth-size_restricted.gif"
                 }
-            }, () => {
-                this.props.dispatch(userActions.rate('CHECK_RATE'));
             })
 
         }
@@ -256,13 +253,12 @@ class FilmComponent extends Component {
                         axios.get(`${config.apiUrl}users/me`, requestParams)
                             .then(res => {
 
-
                                 if (res.data.meta.liked.indexOf(this.state.film.filmID) > -1) {
-                                    this.props.dispatch(userActions.rate('LIKED'));
-                                }
-
-                                if (res.data.meta.disliked.indexOf(this.state.film.filmID) > -1) {
-                                    this.props.dispatch(userActions.rate('DISLIKED'));
+                                    this.setState({rate: 'LIKED'})
+                                }else if (res.data.meta.disliked.indexOf(this.state.film.filmID) > -1) {
+                                    this.setState({rate: 'DISLIKED'})
+                                }else{
+                                    this.setState({rate: ''});
                                 }
 
                             });
@@ -361,13 +357,12 @@ class FilmComponent extends Component {
                             axios.get(`${config.apiUrl}users/me`, requestParams)
                                 .then(res => {
 
-
                                     if (res.data.meta.liked.indexOf(this.state.film.filmID) > -1) {
-                                        this.props.dispatch(userActions.rate('LIKED'));
-                                    }
-
-                                    if (res.data.meta.disliked.indexOf(this.state.film.filmID) > -1) {
-                                        this.props.dispatch(userActions.rate('DISLIKED'));
+                                        this.setState({rate: 'LIKED'})
+                                    } else if (res.data.meta.disliked.indexOf(this.state.film.filmID) > -1) {
+                                        this.setState({rate: 'DISLIKED'})
+                                    }else{
+                                        this.setState({rate: ''});
                                     }
 
                                 });
@@ -404,11 +399,37 @@ class FilmComponent extends Component {
             });
 
         }
+
+        if(prevProps.loggedIn !== this.props.loggedIn && this.props.loggedIn){
+
+            if (localStorage.getItem('user')) {
+
+
+                const requestParams = {
+                    headers: authHeader()
+                };
+
+                axios.get(`${config.apiUrl}users/me`, requestParams)
+                    .then(res => {
+
+                        if (res.data.meta.liked.indexOf(this.state.film.filmID) > -1) {
+                            this.setState({rate: 'LIKED'})
+                        }else if (res.data.meta.disliked.indexOf(this.state.film.filmID) > -1) {
+                            this.setState({rate: 'DISLIKED'})
+                        }else {
+                            this.setState({rate: ''});
+                        }
+
+                    });
+            }
+        }else if(prevProps.loggedIn !== this.props.loggedIn && !this.props.loggedIn){
+            this.setState({rate: ''});
+        }
     }
 
     render() {
 
-        const {rated} = this.props;
+        const {rate} = this.state;
         const {loggedIn} = this.props;
         const {
             expanded,
@@ -416,7 +437,6 @@ class FilmComponent extends Component {
         } = this.state;
 
 
-        this.checkRate();
 
         return (
 
@@ -451,14 +471,14 @@ class FilmComponent extends Component {
 
                                             <p style={{cursor: "pointer"}}
                                                onClick={() => this.updateMeta('liked')}
-                                               className={`${loggedIn && rated === 'LIKED' ? "blue" : ""} font-weight-bold no-copy`}>
+                                               className={`${loggedIn && rate === 'LIKED' ? "blue" : ""} font-weight-bold no-copy`}>
                                                 <FontAwesomeIcon icon="thumbs-up"/>
                                                 &ensp;{this.state.film.likes}</p>
                                         </Col>
                                         <Col xs={4} sm={4}>
                                             <p style={{cursor: "pointer"}}
                                                onClick={() => this.updateMeta('disliked')}
-                                               className={`${loggedIn && rated === 'DISLIKED' ? "blue" : ""} font-weight-bold no-copy`}>
+                                               className={`${loggedIn && rate === 'DISLIKED' ? "blue" : ""} font-weight-bold no-copy`}>
                                                 <FontAwesomeIcon icon="thumbs-down"/>
                                                 &ensp;{this.state.film.dislikes}</p>
                                         </Col>
@@ -597,11 +617,9 @@ class FilmComponent extends Component {
 
 function mapStateToProps(state) {
     const {loggedIn} = state.auth;
-    const {rated} = state.rate;
 
     return {
-        loggedIn,
-        rated,
+        loggedIn
     };
 }
 
