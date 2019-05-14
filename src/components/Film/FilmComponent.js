@@ -138,41 +138,25 @@ class FilmComponent extends Component {
         const requestOptions = {headers: authHeader()};
 
         const rate = meta.toString().toUpperCase();
-        const isLiked = rate === 'LIKED' ? 1 : -1;
-
 
         if(this.state.rate !== rate ) {
-            if(this.state.rate === ''){
-                this.setState({
-                    film: {
-                        ...this.state.film,
-                        'dislikes': this.state.film.dislikes + (rate === 'DISLIKED' ? 1 : 0) ,
-                        'likes': this.state.film.likes + (rate === 'LIKED' ? 1 : 0)
-                    }
-                });
-                this.setState({rate: meta.toString().toUpperCase()});
-            }else{
-                this.setState({
-                    film: {
-                        ...this.state.film,
-                        'dislikes': this.state.film.dislikes - isLiked ,
-                        'likes': this.state.film.likes + isLiked
-                    }
-                });
-                this.setState({rate: meta.toString().toUpperCase()});
-            }
-
-
 
             return axios.put(`${config.apiUrl}users/update/meta`, {[meta]: this.state.film.filmID},
             requestOptions)
             .then(data => {
-                console.log(meta);
-
                 const value = data.data;
                 return axios.put(`${config.apiUrl}films/${this.state.film.filmID}/meta`, value,
                     options)
-                    .then(data => {})
+                    .then(data => {
+
+                            this.setState({
+                                film: { ...this.state.film,
+                                    'dislikes': data.data.thumbsDown,
+                                    'likes': data.data.thumbsUp,
+                                    rate: meta.toString().toUpperCase()
+                                }
+                            });
+                    })
                     .catch(err => {});
 
             }).catch(err => {
