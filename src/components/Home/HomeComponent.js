@@ -30,6 +30,8 @@ class HomeComponent extends Component {
             isLoading: true,
             isMounted: false,
 
+            filmsPreviewLoaded: 0,
+
             scroll: {},
             windowWidth: window.innerWidth,
 
@@ -236,8 +238,10 @@ class HomeComponent extends Component {
                                                 if (film.img === `${config.apiUrl}films/${film.id}/thumbnail/${film.thumbnail._id}?width=preview`) {
                                                     film.img = `${config.apiUrl}films/${film.id}/thumbnail/${film.thumbnail._id}?width=small`;
                                                     filmsLoaded++;
-                                                    if(filmsLoaded >= films.length){
-                                                        this.setState({films: films});
+                                                    if(this.state.filmsPreviewLoaded + filmsLoaded >= films.length){
+                                                        this.setState({
+                                                            filmsPreviewLoaded: (this.state.filmsPreviewLoaded + filmsLoaded),
+                                                            films: films});
                                                     }
                                                 }
                                             }
