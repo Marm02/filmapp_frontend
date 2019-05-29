@@ -121,7 +121,7 @@ class HomeComponent extends Component {
         } = this;
 
         if (error || isLoading || !hasMore) return;
-
+        alert("innerHeight = " + window.innerHeight + " scrollTop = " + document.documentElement.scrollTop + " offsetHeight = " + document.body.offsetHeight);
         if ((window.innerHeight + document.documentElement.scrollTop) >= (document.body.offsetHeight - 400)) {
             loadData();
         }
