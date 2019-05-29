@@ -30,7 +30,7 @@ class ProfileComponent extends Component {
 
         this.setState({
             scroll: {
-                scrollTop: document.documentElement.scrollTop,
+                scrollTop: window.pageYOffset,
                 offsetHeight: document.documentElement.offsetHeight,
                 innerHeight: window.innerHeight
             }
@@ -165,7 +165,7 @@ class ProfileComponent extends Component {
 
         this.setState({
             scroll: {
-                scrollTop: document.documentElement.scrollTop,
+                scrollTop: window.pageYOffset,
                 offsetHeight: document.documentElement.offsetHeight,
                 innerHeight: window.innerHeight
             }

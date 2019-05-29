@@ -43,7 +43,7 @@ class AllPlaylistsComponent extends Component {
 
         this.setState({
             scroll: {
-                scrollTop: document.documentElement.scrollTop,
+                scrollTop: window.pageYOffset,
                 offsetHeight: document.documentElement.offsetHeight,
                 innerHeight: window.innerHeight
             }
@@ -92,7 +92,7 @@ class AllPlaylistsComponent extends Component {
 
         this.setState({
             scroll: {
-                scrollTop: document.documentElement.scrollTop,
+                scrollTop: window.pageYOffset,
                 offsetHeight: document.documentElement.offsetHeight,
                 innerHeight: window.innerHeight
             }
@@ -109,7 +109,7 @@ class AllPlaylistsComponent extends Component {
 
         if (error || isLoading || !hasMore) return;
 
-        if ((window.innerHeight + document.documentElement.scrollTop) >= (document.body.offsetHeight - 150)) {
+        if ((window.innerHeight + window.pageYOffset) >= (document.body.offsetHeight - 150)) {
             loadData();
         }
     };

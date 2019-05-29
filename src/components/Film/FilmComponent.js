@@ -80,14 +80,14 @@ class FilmComponent extends Component {
 
         this.setState({
             scroll: {
-                scrollTop: document.documentElement.scrollTop,
+                scrollTop: window.pageYOffset,
                 offsetHeight: document.documentElement.offsetHeight,
                 innerHeight: window.innerHeight
             }
         });
 
 
-        if ((window.innerHeight + document.documentElement.scrollTop) >= (document.body.offsetHeight - 150)) {
+        if ((window.innerHeight + window.pageYOffset) >= (document.body.offsetHeight - 150)) {
             this.setState({isLoadingFilms: true});
             if (window.innerWidth <= windowBreakpoint) {
                 if (!this.state.hasMoreFilms) {

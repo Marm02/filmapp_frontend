@@ -75,7 +75,7 @@ class SearchComponent extends Component {
 
         this.setState({
             scroll: {
-                scrollTop: document.documentElement.scrollTop,
+                scrollTop: window.pageYOffset,
                 offsetHeight: document.documentElement.offsetHeight,
                 innerHeight: window.innerHeight
             }
@@ -125,7 +125,7 @@ class SearchComponent extends Component {
         if (_.isEqual(prevParams, params) === false) {
             this.setState({
                 scroll: {
-                    scrollTop: document.documentElement.scrollTop,
+                    scrollTop: window.pageYOffset,
                     offsetHeight: document.documentElement.offsetHeight,
                     innerHeight: window.innerHeight
                 }
@@ -202,7 +202,7 @@ class SearchComponent extends Component {
 
         this.setState({
             scroll: {
-                scrollTop: document.documentElement.scrollTop,
+                scrollTop: window.pageYOffset,
                 offsetHeight: document.documentElement.offsetHeight,
                 innerHeight: window.innerHeight
             }
@@ -217,7 +217,7 @@ class SearchComponent extends Component {
             }
         } = this;
         if (error || isLoading || !hasMore) return;
-        if ((window.innerHeight + document.documentElement.scrollTop) >= (document.body.offsetHeight - 150)) {
+        if ((window.innerHeight + window.pageYOffset) >= (document.body.offsetHeight - 150)) {
             loadData();
         }
     };

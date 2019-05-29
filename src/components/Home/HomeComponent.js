@@ -48,7 +48,7 @@ class HomeComponent extends Component {
 
         this.setState({
             scroll: {
-                scrollTop: document.documentElement.scrollTop,
+                scrollTop: window.pageYOffset,
                 offsetHeight: document.documentElement.offsetHeight,
                 innerHeight: window.innerHeight
             }
@@ -105,7 +105,7 @@ class HomeComponent extends Component {
 
         this.setState({
             scroll: {
-                scrollTop: document.documentElement.scrollTop,
+                scrollTop: window.pageYOffset,
                 offsetHeight: document.documentElement.offsetHeight,
                 innerHeight: window.innerHeight
             }
@@ -121,11 +121,11 @@ class HomeComponent extends Component {
         } = this;
 
         if (error || isLoading || !hasMore) return;
-        alert("innerHeight = " + window.innerHeight + " scrollTop = " +
-            document.documentElement.scrollTop + " offsetHeight = " + document.body.offsetHeight
-        + " pageOffset " + window.pageYOffset);
+        // alert("innerHeight = " + window.innerHeight + " scrollTop = " +
+        //     document.documentElement.scrollTop + " offsetHeight = " + document.body.offsetHeight
+        // + " pageOffset " + window.pageYOffset);
         // alert("innerHeight = " + window.innerHeight + " scrollTop = " + document.documentElement.scrollTop + " documentElementoffsetHeight = " + document.documentElement.offsetHeight);
-        if ((window.innerHeight + document.documentElement.scrollTop) >= (document.body.offsetHeight - 400)) {
+        if ((window.innerHeight +  window.pageYOffset) >= (document.body.offsetHeight - 400)) {
             loadData();
         }
     };
