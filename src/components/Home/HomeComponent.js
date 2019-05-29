@@ -121,9 +121,10 @@ class HomeComponent extends Component {
         } = this;
 
         if (error || isLoading || !hasMore) return;
-        alert("innerHeight = " + window.innerHeight + " scrollTop = " + document.documentElement.scrollTop + " offsetHeight = " + document.body.offsetHeight);
-        alert("innerHeight = " + window.innerHeight + " scrollTop = " + document.documentElement.scrollTop + " documentElementoffsetHeight = " + document.documentElement.offsetHeight);
-        if ((window.innerHeight + document.documentElement.scrollTop) >= (document.body.offsetHeight - 400)) {
+        // alert("innerHeight = " + window.innerHeight + " scrollTop = " + document.documentElement.scrollTop + " offsetHeight = " + document.body.offsetHeight);
+        // alert("innerHeight = " + window.innerHeight + " scrollTop = " + document.documentElement.scrollTop + " documentElementoffsetHeight = " + document.documentElement.offsetHeight);
+        if (  window.innerHeight + document.documentElement.scrollTop
+            === document.documentElement.offsetHeight) {
             loadData();
         }
     };
