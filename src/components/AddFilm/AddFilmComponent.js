@@ -9,6 +9,7 @@ import {config} from "../../config";
 import {authHeader} from "../../helpers";
 import axios from "axios";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {isMobile} from "react-device-detect";
 
 const CHOOSE_FILM = `Choose a film `;
 const CHOOSE_THUMBNAIL = `Choose a thumbnail `;
@@ -237,7 +238,7 @@ class AddFilmComponent extends Component {
                                 </label>
 
                                 {
-                                    this.state.thumbnailName === CHOOSE_THUMBNAIL &&
+                                    !isMobile && this.state.thumbnailName === CHOOSE_THUMBNAIL &&
                                     <span>or drop it here</span>
                                 }
                                 {
