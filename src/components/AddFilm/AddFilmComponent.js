@@ -123,6 +123,9 @@ class AddFilmComponent extends Component {
 
     handleFileChoose(event, type) {
         event.preventDefault();
+        this.setState({
+            alert: {type: "", message: ""}
+        });
         switch (type) {
             case 'film':
                 this.setState({
@@ -146,6 +149,10 @@ class AddFilmComponent extends Component {
 
     handleDropFilm = (files, event) => {
         this.setState({
+            alert: {type: "", message: ""}
+        });
+
+        this.setState({
             film: files[0],
             filmName: files[0].name,
             filmPreview: URL.createObjectURL(files[0])
@@ -153,6 +160,10 @@ class AddFilmComponent extends Component {
     };
 
     handleDropThumbnail = (files, event) => {
+        this.setState({
+            alert: {type: "", message: ""}
+        });
+
         this.setState({
             thumbnail: files[0],
             thumbnailName: files[0].name,
@@ -184,13 +195,13 @@ class AddFilmComponent extends Component {
                                 </label>
 
                                 {
-                                    this.state.filmName === CHOOSE_FILM &&
+                                    !isMobile && this.state.filmName === CHOOSE_FILM &&
                                     <span>or drop it here</span>
                                 }
 
                                 {
                                     this.state.filmPreview &&
-                                    <video muted={true} autoPlay={true} className="embed-responsive-item "
+                                    <video muted={true} autoPlay={true} className="embed-responsive-item " loop={true}
                                            src={this.state.filmPreview}>
                                     </video>
                                 }
