@@ -12,15 +12,15 @@ self.__precacheManifest = [
     "url": "/filmapp_frontend/static/js/runtime~main.fbaaed63.js"
   },
   {
-    "revision": "8f57ad8a63c212cc93cf",
-    "url": "/filmapp_frontend/static/js/main.4ba48c05.chunk.js"
+    "revision": "c653a69b74a9690c7d39",
+    "url": "/filmapp_frontend/static/js/main.30e9fd6c.chunk.js"
   },
   {
     "revision": "037d094a07446c92535e",
     "url": "/filmapp_frontend/static/js/2.31f37494.chunk.js"
   },
   {
-    "revision": "8f57ad8a63c212cc93cf",
+    "revision": "c653a69b74a9690c7d39",
     "url": "/filmapp_frontend/static/css/main.578a3fd1.chunk.css"
   },
   {
@@ -28,7 +28,7 @@ self.__precacheManifest = [
     "url": "/filmapp_frontend/static/css/2.f4a3210f.chunk.css"
   },
   {
-    "revision": "6236353ef88073d2db36739f9a941bd4",
+    "revision": "c22bb0bbc62007f31b4f4edd8e06397c",
     "url": "/filmapp_frontend/index.html"
   }
 ];
