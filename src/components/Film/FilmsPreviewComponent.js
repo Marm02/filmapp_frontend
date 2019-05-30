@@ -261,7 +261,7 @@ class FilmsPreviewComponent extends Component {
                                         <Row className="m-0">
                                             <Col xs={10} sm={10} className="p-0">
                                                 <TextTruncate line={2} text={film.title}
-                                                              id="s-c-2" className="mb-1 title font-weight-bold"/>
+                                                              id="s-c-2" className="mb-1 title"/>
 
                                             </Col>
                                             <PlaylistAddButtonComponent parentName="search"

@@ -219,8 +219,6 @@ class HomeComponent extends Component {
         const {scroll} = this.state;
         let films = this.state.films.map(a => Object.assign({}, a));
 
-        let filmsLoaded = 0;
-
         return (
             <Col>
 
