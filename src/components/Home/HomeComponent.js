@@ -240,7 +240,7 @@ class HomeComponent extends Component {
 
                                         <ImageBlurredComponent
                                             image={film.img}
-                                            setRedirect={this.setRedirect(filmID)}/>
+                                            setRedirect={() => this.setRedirect(filmID)}/>
                                     }
                                     <FontAwesomeIcon className="middle" icon="play"
                                                      onClick={() => this.setRedirect(filmID)}/>
