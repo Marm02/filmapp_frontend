@@ -9,6 +9,7 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import Button from '@material-ui/core/Button';
 import connect from "react-redux/es/connect/connect";
 import TextTruncate from "react-text-truncate";
+import ImageBlurredComponent from "../ImageBlurred/ImageBlurredComponent";
 
 const pathName = config.pathName;
 
@@ -159,7 +160,6 @@ class AllPlaylistsComponent extends Component {
     render() {
         const {isLoading} = this.state;
         const {scroll} = this.state;
-        let playlistsLoaded = 0;
         let playlists = this.state.playlists.map(a => Object.assign({}, a));
 
         return (
@@ -184,23 +184,10 @@ class AllPlaylistsComponent extends Component {
                                     <div onClick={() => this.setRedirect(playlistID, filmID)}
                                          className="embed-responsive embed-responsive-16by9 z-depth-1-half container">
                                         {
-                                            <img
-                                                onLoad={ () => {
-                                                    if (playlist.img === `${config.apiUrl}films/${playlist.filmID}/thumbnail/${playlist.thumbnail}?width=preview`) {
-                                                        playlist.img = `${config.apiUrl}films/${playlist.filmID}/thumbnail/${playlist.thumbnail}?width=small`;
-                                                        playlistsLoaded++;
-                                                        console.log(playlistsLoaded)
-                                                        if(this.state.playlistsPreviewLoaded + playlistsLoaded >= playlists.length){
-                                                            this.setState({
-                                                                playlistsPreviewLoaded: (this.state.playlistsPreviewLoaded + playlistsLoaded),
-                                                                playlists: playlists});
-                                                        }
-                                                    }
-                                                }}
-                                                alt=""
-                                                className="embed-responsive-item image"
-                                                src={playlist.img}
-                                                onClick={() => this.setRedirect(playlistID, filmID)}/>
+
+                                            <ImageBlurredComponent
+                                                image={playlist.img}
+                                                setRedirect={() => this.setRedirect(playlistID, filmID)}/>
                                         }
                                         <Row className="middle">
                                             <Col xs={4} sm={4}>

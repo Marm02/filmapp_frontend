@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Button, Col, FormControl, Row} from "react-bootstrap";
+import {Button, Col, Form, FormControl, Row} from "react-bootstrap";
 import connect from "react-redux/es/connect/connect";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './AddFilmComponent.css'
@@ -9,6 +9,7 @@ import {config} from "../../config";
 import {authHeader} from "../../helpers";
 import axios from "axios";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import Form from "react-bootstrap/es/Form";
 
 const CHOOSE_FILM = `Choose a film `;
 const CHOOSE_THUMBNAIL = `Choose a thumbnail `;
@@ -48,12 +49,18 @@ class AddFilmComponent extends Component {
     handleChange(e) {
         const {name, value} = e.target;
         this.setState({[name]: value});
+        this.setState({
+            alert: {type: "", message: ""}
+        });
     }
 
     handleSubmit(e) {
         e.preventDefault();
 
         this.setState({submitted: true});
+        this.setState({
+            alert: {type: "", message: ""}
+        });
 
         if (!localStorage.getItem('user')) {
             this.props.history.push(`${pathName}add/login`);
@@ -270,12 +277,21 @@ class AddFilmComponent extends Component {
                     </Col>
 
                     <Col className="mb-3" sm={12}>
-                        <Button variant="primary"
-                                disabled={isLoading}
-                                onClick={!isLoading ? this.handleSubmit : null}
-                        >
-                            {isLoading ? 'Loading…' : 'Add'}
-                        </Button>
+                        <Form.Group>
+                            <Button variant="primary"
+                                    disabled={isLoading}
+                                    onClick={!isLoading ? this.handleSubmit : null}
+                            >
+                                {isLoading ? 'Loading…' : 'Add'}
+                            </Button>
+
+                            {
+                                isLoading &&
+                                <img alt="loading..." className="pl-2"
+                                     src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="/>
+
+                            }
+                        </Form.Group>
                     </Col>
                     {this.state.alert.message &&
                     <Col className={`alert ${this.state.alert.type}`}>{this.state.alert.message}</Col>
