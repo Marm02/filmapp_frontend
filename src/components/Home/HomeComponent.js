@@ -12,6 +12,7 @@ import {PlaylistAddButtonComponent} from "../Playlist/PlaylistAddButtonComponent
 import Snackbar from '@material-ui/core/Snackbar';
 import TextTruncate from "react-text-truncate";
 import {isMobile} from 'react-device-detect'
+import ImageBlurredComponent from "../ImageBlurred/ImageBlurredComponent";
 
 const pathName = config.pathName;
 
@@ -236,22 +237,10 @@ class HomeComponent extends Component {
                             return <Col className="mb-5 film-preview-holder" xs={6} sm={4} md={3} lg={2} key={film.id}>
                                 <div className="embed-responsive embed-responsive-16by9 z-depth-1-half container">
                                     {
-                                        <img
-                                            onLoad={ () => {
-                                                if (film.img === `${config.apiUrl}films/${film.id}/thumbnail/${film.thumbnail._id}?width=preview`) {
-                                                    film.img = `${config.apiUrl}films/${film.id}/thumbnail/${film.thumbnail._id}?width=small`;
-                                                    filmsLoaded++;
-                                                    if(this.state.filmsPreviewLoaded + filmsLoaded >= films.length){
-                                                        this.setState({
-                                                            filmsPreviewLoaded: (this.state.filmsPreviewLoaded + filmsLoaded),
-                                                            films: films});
-                                                    }
-                                                }
-                                            }}
-                                            alt=""
-                                            className="embed-responsive-item image"
-                                            src={film.img}
-                                            onClick={() => this.setRedirect(filmID)}/>
+
+                                        <ImageBlurredComponent
+                                            image={film.img}
+                                            setRedirect={this.setRedirect(filmID)}/>
                                     }
                                     <FontAwesomeIcon className="middle" icon="play"
                                                      onClick={() => this.setRedirect(filmID)}/>
