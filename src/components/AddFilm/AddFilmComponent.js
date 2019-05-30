@@ -9,7 +9,6 @@ import {config} from "../../config";
 import {authHeader} from "../../helpers";
 import axios from "axios";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import Form from "react-bootstrap/es/Form";
 
 const CHOOSE_FILM = `Choose a film `;
 const CHOOSE_THUMBNAIL = `Choose a thumbnail `;
